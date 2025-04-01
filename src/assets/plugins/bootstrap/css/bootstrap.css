@@ -6591,6 +6591,10 @@ button.bg-dark:focus {
   background-color: #fff !important;
 }
 
+.bg-secondary-2 {
+  background-color: #d9e9f4 !important;
+}
+
 .bg-transparent {
   background-color: transparent !important;
 }

@@ -1,7 +1,7 @@
 /*===================== Premery bg color =====================*/
 :root {
-	--color-primary: #2ec4b6;
-	--color-hover: #1c9b8e;
+	--color-primary: #1076bc;
+	--color-hover: #1085d3;
 }
 
 /* Hex */
@@ -134,7 +134,7 @@ button.scroltop,
 .header-nav .nav > li .sub-menu li > a:after,
 .searchform input[type="submit"],
 .widget_calendar table tbody td#today {
-	background-color: #2ec4b6;
+	background-color: #1076bc;
 }
 
 /*Hex color :hover */
@@ -176,10 +176,11 @@ button.scroltop,
 .btnhover14::after,
 .btnhover13::after,
 .btnhover15::after {
-	background-color: #1c9b8e;
+	background-color: #d9e9f4;
+	color: #1076bc;
 }
 .about-us .dlab-tabs .nav-tabs li.active {
-	border-right: 4px solid #1c9b8e;
+	border-right: 4px solid #1076bc;
 }
 
 /* Rgba color */
@@ -271,13 +272,13 @@ h6 a:hover,
 .service-box-4 .service-images i,
 .list-2 li:hover:before,
 .widget_rss ul .rss-date {
-	color: #2ec4b6;
+	color: #1076bc;
 }
 @media only screen and (max-width: 991px) {
 	.nav-dark.header-nav .nav > li > a:hover,
 	.nav-dark.header-nav .nav > li > a:active,
 	.nav-dark.header-nav .nav > li > a:focus {
-		color: #2ec4b6;
+		color: #1076bc;
 	}
 }
 /*===================== Premery border color =====================*/
@@ -380,7 +381,7 @@ button.scroltop {
 }
 /* secondry color */
 .text-secondry {
-	color: #353866;
+	color: #272727;
 }
 .item-info-in,
 .header-transparent.is-fixed .main-bar,
@@ -392,7 +393,7 @@ button.scroltop {
 .footer-bottom,
 .site-button-secondry,
 .top-bar{
-	background-color:#353866;
+	background-color:#272727;
 }
 
 

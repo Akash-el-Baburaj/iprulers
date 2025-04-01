@@ -16,9 +16,118 @@
                     <div class="col-lg-3 col-md-5">
                         <aside class="side-bar sticky-top">
                             <app-search-form3></app-search-form3>
-                            <app-recent-posts1></app-recent-posts1>
+							<div class="widget recent-posts-entry">
+								<h5 class="widget-title style-1">Categories</h5>
+
+								<div class="dlab-accordion advanced-search toggle" id="accordion1">
+									<div class="panel">
+										<div class="acod-head-2">
+											<h5 class="acod-title">
+												<a href="javascript: void(0)">
+													Category 1
+												</a>
+											</h5>
+										</div>
+									</div>
+									<div class="panel">
+										<div class="acod-head-2">
+											<h5 class="acod-title">
+												<a href="javascript: void(0)">
+													Category 2
+												</a>
+											</h5>
+										</div>
+									</div>
+									<div class="panel">
+										<div class="acod-head">
+											<h5 class="acod-title">
+												<a data-toggle="collapse" href="#categories3">
+													Category 3
+												</a>
+											</h5>
+										</div>
+										<div id="categories3" class="acod-body collapse show">
+											<div class="acod-content">
+												<div class="widget widget_services">
+													<ul>
+														<li><a [routerLink]="['/shop-cart']">Category 3.1</a></li>
+														<li><a [routerLink]="['/shop-cart']">Category 3.2</a></li>
+														<li><a [routerLink]="['/shop-cart']">Category 3.3</a></li>
+														<li><a [routerLink]="['/shop-cart']">Category 3.4</a></li>
+														
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="panel">
+										<div class="acod-head">
+											<h5 class="acod-title">
+												<a data-toggle="collapse" href="#categories4" class="collapsed">
+													Category 4
+												</a>
+											</h5>
+										</div>
+										<div id="categories4" class="acod-body collapse">
+											<div class="acod-content">
+												<div class="widget widget_services">
+													<ul>
+														<li><a [routerLink]="['/shop-cart']">Category 4.1</a></li>
+														<li><a [routerLink]="['/shop-cart']">Category 4.2</a></li>
+														<li><a [routerLink]="['/shop-cart']">Category 4.3</a></li>														
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="panel">
+										<div class="acod-head-2">
+											<h5 class="acod-title-2">
+												<a href="javascript: void(0)">
+													Category 5
+												</a>
+											</h5>
+										</div>
+									</div>
+									<!-- <div class="panel">
+										<div class="acod-head">
+											<h5 class="acod-title">
+												<a data-toggle="collapse" href="#tags" class="collapsed">
+													POPULAR TAGS
+												</a>
+											</h5>
+										</div>
+										<div id="tags" class="acod-body collapse">
+											<div class="acod-content">
+												<div class="widget_tag_cloud radius">
+													<div class="tagcloud"> <a href="javascript:void(0);">Design</a>
+														<a href="javascript:void(0);">User interface</a>
+														<a href="javascript:void(0);">SEO</a>
+														<a href="javascript:void(0);">WordPress</a>
+														<a href="javascript:void(0);">Development</a>
+														<a href="javascript:void(0);">Joomla</a>
+														<a href="javascript:void(0);">Design</a>
+														<a href="javascript:void(0);">User interface</a>
+														<a href="javascript:void(0);">SEO</a>
+														<a href="javascript:void(0);">WordPress</a>
+														<a href="javascript:void(0);">Development</a>
+														<a href="javascript:void(0);">Joomla</a>
+														<a href="javascript:void(0);">Design</a>
+														<a href="javascript:void(0);">User interface</a>
+														<a href="javascript:void(0);">SEO</a>
+														<a href="javascript:void(0);">WordPress</a>
+														<a href="javascript:void(0);">Development</a>
+														<a href="javascript:void(0);">Joomla</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div> -->
+								</div>
+							</div>
+                            <!-- <app-recent-posts1></app-recent-posts1> -->
                             <app-our-gallery1></app-our-gallery1>
-                            <app-category-list1></app-category-list1>
+                            <!-- <app-category-list1></app-category-list1> -->
                             <app-tag-list1></app-tag-list1>
                         </aside>
                     </div>
@@ -27,21 +136,21 @@
                     <div class="col-lg-9 col-md-7">
                         <div class="row">
 							<div *ngFor="let rowdata of courceData" class="col-lg-4">
-								<div class="dlab-box courses-bx">
+								<div class="dlab-box courses-bx" style="background-color: #d9e9f4 !important;">
 									<div class="dlab-media"> 
 										<img src="{{ rowdata.img }}" alt="">
-										<div class="user-info">
+										<div class="user-info" style="background: #1077bc79;">
 											<img src="assets/images/testimonials/pic1.jpg" alt="">
-											<h6 class="title">Jack Ronan</h6>
+											<h6 class="title" style="color: #fff !important;">Jack Ronan</h6>
 											<div class="review">
 												<ul class="item-review">
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star-half-o"></i></li>
-													<li><i class="fa fa-star-o"></i></li>
+													<li style="color: #fff !important;"><i class="fa fa-star"></i></li>
+													<li style="color: #fff !important;"><i class="fa fa-star"></i></li>
+													<li style="color: #fff !important;"><i class="fa fa-star"></i></li>
+													<li style="color: #fff !important;"><i class="fa fa-star-half-o"></i></li>
+													<li style="color: #fff !important;"><i class="fa fa-star-o"></i></li>
 												</ul>
-												<span>10 Review</span>
+												<span style="color: #fff !important;">10 Review</span>
 											</div>
 										</div>
 									</div>
@@ -79,9 +188,9 @@
     <!-- Content END-->
     <!-- Footer -->
    <!-- Newsletter -->
-	<app-newsletter2></app-newsletter2>
+	<!-- <app-newsletter2></app-newsletter2> -->
    <!-- Footer -->
-    <app-footer13></app-footer13>
+    <app-footer9></app-footer9>
     <!-- Footer END-->
     <!-- scroll top button -->
     <!-- scroltop -->

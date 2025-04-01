@@ -15,7 +15,7 @@ export class CourcesComponent {
 
   banner: any = {
     pagetitle: "Courses",
-    bg_image: "assets/images/banner/bnr4.jpg",
+    bg_image: "assets/images/banner/bnr-6.png",
     title: "Courses",
   }
   courses: any[] = [
@@ -27,7 +27,7 @@ export class CourcesComponent {
       subject: "Learn Python – Interactive Python Tutorial",
       course_link: "courses-details",
       course_description: "Lorem Ipsum is simply dummy text of the printing and typesetting.",
-      students: "20 Student",
+      students: "5 Modules",
       price: "$79.00",
     },
   ]
@@ -41,63 +41,63 @@ export class CourcesComponent {
       img: 'assets/images/our-services/pic1.jpg',
       title: 'Learn Python – Interactive Python Tutorial',
       desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting.',
-      use_student: '20 Student ',
+      use_student: '5 Modules ',
       price: 79
     },
     {
       img: 'assets/images/our-services/pic2.jpg',
       title: 'Learn Python – Interactive Python Tutorial',
       desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting.',
-      use_student: '20 Student ',
+      use_student: '5 Modules ',
       price: 79
     },
     {
       img: 'assets/images/our-services/pic3.jpg',
       title: 'Learn Python – Interactive Python Tutorial',
       desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting.',
-      use_student: '20 Student ',
+      use_student: '5 Modules ',
       price: 79
     },
     {
       img: 'assets/images/our-services/pic4.jpg',
       title: 'Learn Python – Interactive Python Tutorial',
       desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting.',
-      use_student: '20 Student ',
+      use_student: '5 Modules ',
       price: 79
     },
     {
       img: 'assets/images/our-services/pic1.jpg',
       title: 'Learn Python – Interactive Python Tutorial',
       desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting.',
-      use_student: '20 Student ',
+      use_student: '5 Modules ',
       price: 79
     },
     {
       img: 'assets/images/our-services/pic2.jpg',
       title: 'Learn Python – Interactive Python Tutorial',
       desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting.',
-      use_student: '20 Student ',
+      use_student: '5 Modules ',
       price: 79
     },
     {
       img: 'assets/images/our-services/pic3.jpg',
       title: 'Learn Python – Interactive Python Tutorial',
       desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting.',
-      use_student: '20 Student ',
+      use_student: '5 Modules ',
       price: 79
     },
     {
       img: 'assets/images/our-services/pic4.jpg',
       title: 'Learn Python – Interactive Python Tutorial',
       desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting.',
-      use_student: '20 Student ',
+      use_student: '5 Modules ',
       price: 79
     },
     {
       img: 'assets/images/our-services/pic1.jpg',
       title: 'Learn Python – Interactive Python Tutorial',
       desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting.',
-      use_student: '20 Student ',
+      use_student: '5 Modules ',
       price: 79
     }
   ]

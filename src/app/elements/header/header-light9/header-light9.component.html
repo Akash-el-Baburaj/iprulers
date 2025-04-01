@@ -5,7 +5,7 @@
             <div class="container-fluid clearfix">
                 <!-- website logo -->
                 <div class="logo-header mostion logo-white">
-                    <a [routerLink]="['/home-university']"><img src="assets/images/logo-white.png" alt=""></a>
+                    <a [routerLink]="['/home']"><img src="assets/images/logo-white.png" alt=""></a>
                 </div>
                 <!-- nav toggle button -->
                 <button class="navbar-toggler collapsed navicon justify-content-end" 
@@ -27,10 +27,10 @@
                 </div>
                 <!-- main nav -->
                 <div class="header-nav navbar-collapse collapse justify-content-end" [ngClass]="{'collapse show': collapseToggle}">
-                    <div class="logo-header d-md-block d-lg-none">
-                        <a [routerLink]="['/home-university']"><img src="assets/images/logo-2.png" alt=""></a>
+                    <div class="logo-header d-md-block d-lg-none bg-primary">
+                        <a [routerLink]="['/home']"><img src="assets/images/logo-white.png" alt=""></a>
                     </div>
-                    <ul class="nav navbar-nav">
+                    <!-- <ul class="nav navbar-nav">
                         <li *ngFor="let item of sidebarMenu; let i = index;" class="{{ item.menuClass }}" [ngClass]="{'open': i.toString() == toggleMenu}" [ngClass]="{'active': item.title == activeMenu}">
                             <a href="javascript:void(0);" (click)="opneMenu(i)">{{ item.title }}<i class="fa fa-chevron-down"></i></a>
                             <ul *ngIf="item.subMenu" class="{{ item.subMenuClass }}">
@@ -67,7 +67,10 @@
                                 </li>
                             </ul>
                         </li>
-                    </ul>	
+                    </ul>	 -->
+                    <div class="d-md-block d-lg-none mt-3 text-center">
+                        <a [routerLink]="['/contact-1']" class="site-button btnhover17">Login &nbsp;&nbsp;<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                    </div>
                     <div class="dlab-social-icon">
                         <ul>
                             <li><a class="site-button sharp-sm fa fa-facebook" href="javascript:void(0);"></a></li>
