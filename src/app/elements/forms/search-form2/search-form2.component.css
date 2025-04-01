@@ -11,4 +11,41 @@
         height: fit-content;
         color: #fff !important;
     }
+
+    .input-group a {
+        right: 0 !important;
+        float: right !important;
+    }
+
+    .card{
+        border-radius: .75rem;
+        width: 100% !important;
+        height: auto !important;
+        display: flex !important;
+        justify-content: center;
+        align-items: center !important;
+        margin-bottom: 15px !important;
+        /* float: right !important;         */
+    }
+}
+
+.card{
+    border-radius: .75rem;
+    width: 150px !important;
+    height: 150px !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center !important;
+    
+}
+
+.card h5 {
+    line-height: 0 !important;
+    font-size: 30px !important;
+    /* margin-bottom: 0 !important; */
+}
+
+.card-body {
+    flex: 0 !important;
+    padding: 1.25rem !important;
 }
