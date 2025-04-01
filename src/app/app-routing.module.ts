@@ -133,7 +133,7 @@ const routes: Routes = [
 	{path: 'shop-cart', component: CartComponent},
 	{path: 'shop-wishlist', component: WishlistComponent},
 	{path: 'shop-checkout', component: CheckoutComponent},
-	{path: 'shop-login', component: LoginComponent},
+	{path: 'login', component: LoginComponent},
 	{path: 'shop-register', component: RegisterComponent},
 
 	// Blog -- 
