@@ -1,0 +1,14 @@
+
+.bg-sm-para{
+    color: #272727 !important;
+}
+
+@media screen and (max-width: 768px) { 
+    .bg-sm-para {
+        background-color: #1077bc88 !important;
+        padding: 0 10px;
+        line-height: 15px;
+        height: fit-content;
+        color: #fff !important;
+    }
+}
