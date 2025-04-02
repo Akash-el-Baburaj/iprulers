@@ -5,7 +5,7 @@
     <!-- header END -->
 	<!-- Content -->
     <div class="page-content bg-dark">	
-		<app-search-form2></app-search-form2>
+		<app-search-form2 (scrollToCourses)="scrollToCourses()"></app-search-form2>
 		
 		<!-- END REVOLUTION SLIDER -->
         <!-- contact area -->
@@ -16,7 +16,7 @@
 			<app-content9></app-content9>
 			<!-- Courses Category End -->
 			<!-- Courses -->
-			<app-courses5></app-courses5>
+			<app-courses5 id="coursesSection" #coursesSection></app-courses5>
 			<!-- Courses End -->
 			<!-- Testimonials Style 11 -->
             <app-testimonial3></app-testimonial3>

@@ -15570,7 +15570,7 @@ pre {
 }
 
 .user-info{
-	padding: 10px 10px 10px 65px;
+	padding: 10px 10px 10px 10px;
     position: absolute;
     bottom: -100px;
     background: rgba(0,0,0,0.7);

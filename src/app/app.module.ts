@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { LightgalleryModule } from 'lightgallery/angular';
+import { NgbTooltipModule, NgbAccordionModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -193,6 +195,7 @@ import { Gallery5Component } from './elements/gallery/gallery5/gallery5.componen
 import { Gallery6Component } from './elements/gallery/gallery6/gallery6.component';
 import { Courses6Component } from './elements/courses/courses6/courses6.component';
 import { LightgalleryComponent } from './elements/widgets/lightgallery/lightgallery.component';
+import { PdfViewerComponent } from './elements/pdf-viewer/pdf-viewer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -385,11 +388,16 @@ import { LightgalleryComponent } from './elements/widgets/lightgallery/lightgall
     Gallery6Component,
     Courses6Component,
     LightgalleryComponent,
+    PdfViewerComponent,
   ],
   imports: [
     BrowserModule,
     LightgalleryModule,
-    AppRoutingModule
+    NgbTooltipModule,
+    NgbAccordionModule,
+    NgbCollapseModule,
+    AppRoutingModule,
+    NgxExtendedPdfViewerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

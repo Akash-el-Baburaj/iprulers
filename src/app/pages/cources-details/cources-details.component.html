@@ -14,6 +14,8 @@
 				<div class="row">
 					<div class="col-lg-12 m-b30">
 						<div class="course-view text-center">
+							<!-- <a [routerLink]="['/course-pdf']" class="text-primary" style="text-decoration: underline;">Explore More &nbsp;&nbsp;<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a> -->
+
 							<h2 class="m-t0 m-b10 font-28 title text-black">PCEP – Certified Entry-level Python Programmer Certification</h2>
 							<ul class="course-info">
 								<li> 
@@ -32,13 +34,13 @@
 						</div>
 					</div>
 					<!-- Side bar start -->
-					<div class="col-xl-3 col-lg-4 col-md-12 m-b30">
+					<div class="col-xl-3 col-lg-4 col-md-12 m-b30 d-none d-lg-block">
 						<aside class="side-bar sticky-top">
-							<div class="widget">
+							<div class="widget d-none d-lg-block">
 								<div class="teacher-info text-center">
 									<div class="top-info">
-										<span class="price text-primary">Free</span>
-										<a href="" class="site-button button-sm">Take This Course</a>
+										<!-- <span class="price text-primary">Free</span>
+										<a href="" class="site-button button-sm">Take This Course</a> -->
 									</div>
 									<div class="teacher-pic"> 
 										<a href="#"><img src="assets/images/testimonials/pic1.jpg" alt=""></a> 
@@ -46,18 +48,18 @@
 									<h4 class="name">Henry H. Garrick</h4>
 									<span class="position">course instructor</span>
 									<div class="clearfix m-b20">
-										<a href="" class="site-button button-sm">FOLLOW NOW <i class="fa fa-user-plus m-l5"></i></a>
+										<a href="" class="site-button button-sm"><i class="fa fa-envelope m-r5"></i>user@example.com</a>
 									</div>
-									<ul class="social-list">
+									<!-- <ul class="social-list">
 										<li><a href="javascript:void(0);" class="site-button circle fa fa-facebook facebook"></a></li>
 										<li><a href="javascript:void(0);" class="site-button circle fa fa-twitter twitter"></a></li>
 										<li><a href="javascript:void(0);" class="site-button circle fa fa-linkedin linkedin"></a></li>
 										<li><a href="javascript:void(0);" class="site-button circle fa fa-whatsapp whatsapp"></a></li>
-									</ul>
+									</ul> -->
 								</div>
 							</div>
-							<app-category-list1></app-category-list1>
-							<app-recent-posts1></app-recent-posts1>
+							<!-- <app-category-list1></app-category-list1> -->
+							<app-recent-posts1 class="d-none d-lg-block"></app-recent-posts1>
 						</aside>
 					</div>
 					<!-- Side bar END -->
@@ -78,6 +80,34 @@
 							</div>
 						</div>
 					</div>
+					<div class="col-lg-12 d-md-block d-lg-none mt-2">
+						<app-recent-posts1
+						  class="d-block d-lg-none"></app-recent-posts1>
+					  </div>
+					  <div class="col-lg-12 d-md-block d-lg-none mt-2">
+						<div class="widget">
+							<div class="teacher-info text-center">
+								<div class="top-info">
+									<!-- <span class="price text-primary">Free</span>
+									<a href="" class="site-button button-sm">Take This Course</a> -->
+								</div>
+								<div class="teacher-pic"> 
+									<a href="#"><img src="assets/images/testimonials/pic1.jpg" alt=""></a> 
+								</div>
+								<h4 class="name">Henry H. Garrick</h4>
+								<span class="position">course instructor</span>
+								<div class="clearfix m-b20">
+									<a href="" class="site-button button-sm"><i class="fa fa-envelope m-r5"></i>user@example.com</a>
+								</div>
+								<!-- <ul class="social-list">
+									<li><a href="javascript:void(0);" class="site-button circle fa fa-facebook facebook"></a></li>
+									<li><a href="javascript:void(0);" class="site-button circle fa fa-twitter twitter"></a></li>
+									<li><a href="javascript:void(0);" class="site-button circle fa fa-linkedin linkedin"></a></li>
+									<li><a href="javascript:void(0);" class="site-button circle fa fa-whatsapp whatsapp"></a></li>
+								</ul> -->
+							</div>
+						</div>
+					  </div>
 					<!-- left part start -->
 				</div>
             </div>

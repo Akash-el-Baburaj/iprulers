@@ -1,50 +1,135 @@
-<div class="widget recent-posts-entry">
-    <h5 class="widget-title style-1">Recent Posts</h5>
-    <div class="widget-post-bx">
-        <div class="widget-post clearfix">
-            <div class="dlab-post-media"> 
-                <img src="assets/images/blog/recent-blog/pic1.jpg" width="200" height="143" alt=""> 
+<div class="container mt-4">
+    <h5 class="mb-3">Courses</h5>
+    <div class="row">
+        <div class="col-12 mb-2">
+            <!-- <div class="card mb-2" (click)="getCourseVideo(course)" 
+                 [ngClass]="{'playing': isSelected(course), 'highlighted': isSelected(course)}"> -->
+            <div class="card mb-2" 
+                    [ngbTooltip]="'Course 1'"
+                    > <!--loop data here-->
+                    <div class="card-body d-flex justify-content-between align-items-center py-0">
+                        <!-- Image (Left-Aligned) -->
+                        <div class="course-image-container px-0" style="position: relative;">
+                                <img src="../../../../assets/images/courses/python.jpg" alt="">
+                        </div>
+
+                        <!-- Course Info (Right-Aligned) -->
+                        <div class="course-info">
+                            <div class="post-meta truncate-text" >Course 1 </div>
+                            <h6 class="post-title text-truncate m-b0" title="'learn Course 1'">
+                                learn Course 1 
+                            </h6>
+                            <div class="dlab-post-meta">
+                                <ul class="w-100 courses">
+                                    <li class="px-0" > 
+                                        <ul class="item-review">
+                                            <li><i class="fa fa-star star"></i></li>
+                                            <li><i class="fa fa-star star"></i></li>
+                                            <li><i class="fa fa-star star"></i></li>
+                                            <li><i class="fa fa-star-half-o star"></i></li>
+                                            <li><i class="fa fa-star-o star"></i></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
             </div>
-            <div class="dlab-post-info">
-                <div class="dlab-post-meta">
-                    <ul>
-                        <li class="post-date"> <i class="la la-clock"></i> <strong>01 June</strong> <span> 2024</span> </li>
-                    </ul>
-                </div>
-                <div class="dlab-post-header">
-                    <h6 class="post-title"><a [routerLink]="['/blog-single-left-sidebar']">Why is Early Education Essential?</a></h6>
-                </div>
-            </div>
-        </div>
-        <div class="widget-post clearfix">
-            <div class="dlab-post-media"> 
-                <img src="assets/images/blog/recent-blog/pic2.jpg" width="200" height="160" alt=""> 
-            </div>
-            <div class="dlab-post-info">
-                <div class="dlab-post-meta">
-                    <ul>
-                        <li class="post-date"> <i class="la la-clock"></i> <strong>01 June</strong> <span> 2024</span> </li>
-                    </ul>
-                </div>
-                <div class="dlab-post-header">
-                    <h6 class="post-title"><a [routerLink]="['/blog-single-left-sidebar']">Here's What People Are Saying About</a></h6>
-                </div>
-            </div>
-        </div>
-        <div class="widget-post clearfix">
-            <div class="dlab-post-media"> 
-                <img src="assets/images/blog/recent-blog/pic3.jpg" width="200" height="160" alt=""> 
-            </div>
-            <div class="dlab-post-info">
-                <div class="dlab-post-meta">
-                    <ul>
-                        <li class="post-date"> <i class="la la-clock"></i> <strong>01 June</strong> <span> 2024</span> </li>
-                    </ul>
-                </div>
-                <div class="dlab-post-header">
-                    <h6 class="post-title"><a [routerLink]="['/blog-single-left-sidebar']">Five Things Nobody Told You About</a></h6>
+            <div class="card mb-2" 
+                [ngbTooltip]="'Course 2'"
+                > <!--loop data here-->
+                <div class="card-body d-flex justify-content-between align-items-center py-0">
+                    <!-- Image (Left-Aligned) -->
+                    <div class="course-image-container px-0" style="position: relative;">
+                            <img src="../../../../assets/images/courses/avaya.webp" alt="">
+                    </div>
+
+                    <!-- Course Info (Right-Aligned) -->
+                    <div class="course-info">
+                        <div class="post-meta truncate-text" >Course 2 </div>
+                        <h6 class="post-title text-truncate m-b0" title="'learn Course 2'">
+                            learn Course 2 
+                        </h6>
+                        <div class="dlab-post-meta">
+                            <ul class="w-100 courses">
+                                <li class="px-0" > 
+                                    <ul class="item-review">
+                                        <li><i class="fa fa-star star"></i></li>
+                                        <li><i class="fa fa-star star"></i></li>
+                                        <li><i class="fa fa-star star"></i></li>
+                                        <li><i class="fa fa-star-half-o star"></i></li>
+                                        <li><i class="fa fa-star-o star"></i></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="card mb-2" 
+                [ngbTooltip]="'Course 3'"
+                > <!--loop data here-->
+                <div class="card-body d-flex justify-content-between align-items-center py-0">
+                    <!-- Image (Left-Aligned) -->
+                    <div class="course-image-container px-0" style="position: relative;">
+                            <img src="../../../../assets/images/courses/Untitled-design-11.png" alt="">
+                    </div>
+
+                    <!-- Course Info (Right-Aligned) -->
+                    <div class="course-info">
+                        <div class="post-meta truncate-text" >Course 3 </div>
+                        <h6 class="post-title text-truncate m-b0" title="'learn Course 3'">
+                            learn Course 3 
+                        </h6>
+                        <div class="dlab-post-meta">
+                            <ul class="w-100 courses">
+                                <li class="px-0" > 
+                                    <ul class="item-review">
+                                        <li><i class="fa fa-star star"></i></li>
+                                        <li><i class="fa fa-star star"></i></li>
+                                        <li><i class="fa fa-star star"></i></li>
+                                        <li><i class="fa fa-star-half-o star"></i></li>
+                                        <li><i class="fa fa-star-o star"></i></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-2" 
+                [ngbTooltip]="'Course 4'"
+                > <!--loop data here-->
+                <div class="card-body d-flex justify-content-between align-items-center py-0">
+                    <!-- Image (Left-Aligned) -->
+                    <div class="course-image-container px-0" style="position: relative;">
+                            <img src="../../../../assets/images/courses/Untitled-design-2.png" alt="">
+                    </div>
+
+                    <!-- Course Info (Right-Aligned) -->
+                    <div class="course-info">
+                        <div class="post-meta truncate-text" >Course 4 </div>
+                        <h6 class="post-title text-truncate m-b0" title="'learn Course 4'">
+                            learn Course 4 
+                        </h6>
+                        <div class="dlab-post-meta">
+                            <ul class="w-100 courses">
+                                <li class="px-0" > 
+                                    <ul class="item-review">
+                                        <li><i class="fa fa-star star"></i></li>
+                                        <li><i class="fa fa-star star"></i></li>
+                                        <li><i class="fa fa-star star"></i></li>
+                                        <li><i class="fa fa-star-half-o star"></i></li>
+                                        <li><i class="fa fa-star-o star"></i></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>

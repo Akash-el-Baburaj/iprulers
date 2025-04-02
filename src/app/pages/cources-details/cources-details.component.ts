@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class CourcesDetailsComponent {
   banner : any = {
 		pagetitle: "Courses Details",
-		bg_image: "assets/images/banner/bnr4.jpg",
+		bg_image: "assets/images/banner/bnr-6.png",
 		title: "Courses Details",
 	}
 }

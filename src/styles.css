@@ -10,4 +10,15 @@ body {
   h1, h2, h3, h4, h5, h6, p {
     font-family: 'Cabin', sans-serif !important;
   }
-  
+
+  .truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* width: 200px; Adjust width as needed */
+    display: block;
+  }
+
+  .pdf-container {
+    pointer-events: none; /* Prevent some screen capture extensions from working */
+  }
