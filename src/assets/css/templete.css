@@ -4374,6 +4374,12 @@ HOME 5 Box Header
 	background-color: #fff;
 	transition: all 0.5s;
 }
+
+@media (max-width: 750px) {
+	.testimonial-13{
+		width: 90% !important;
+	}
+}
 .testimonial-13 .testimonial-detail{
 	padding: 25px 0 20px 20px;
 	border-top: 1px solid rgba(0,0,0,0.09);
