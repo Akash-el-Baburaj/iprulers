@@ -12176,14 +12176,15 @@ ol.commentlist li {
     position: relative;
     padding: 0;
     margin-bottom: 20px;
-    background: #F7F8FA;
-    padding: 20px;
-    border: 1px dashed #EEEEEE;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: .758rem;
+    border: 1px solid #d9e9f4;
 }
 ol.commentlist li img {
     float: left;
     border: 5px solid #FFF;
-    width: 80px;
+    width: 55px;
     height: auto;
 }
 ol.commentlist li .comment-text {
