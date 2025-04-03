@@ -1,13 +1,3 @@
 <div class="pdf-container">
-    <!-- <ngx-extended-pdf-viewer
-      [src]="pdfSrc"
-      useBrowserLocale="true"
-      backgroundColor="black"
-      [showSidebarButton]="false"
-      [showDownloadButton]="false"
-      [showPrintButton]="false"
-      [showOpenFileButton]="false"
-    ></ngx-extended-pdf-viewer> -->
-    <ngx-extended-pdf-viewer [src]="pdfSrc" useBrowserLocale="true" height="500vh"></ngx-extended-pdf-viewer>
-
-  </div>
+  <iframe #pdfFrame [src]="sanitizedPdfUrl" width="100%" height="100%"></iframe>
+</div>

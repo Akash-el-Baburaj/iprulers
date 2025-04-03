@@ -19,6 +19,13 @@ body {
     display: block;
   }
 
-  .pdf-container {
-    pointer-events: none; /* Prevent some screen capture extensions from working */
+  @media print {
+    body {
+      display: none !important;
+    }
   }
+  
+  html {
+    backdrop-filter: blur(10px) !important;
+  }
+  

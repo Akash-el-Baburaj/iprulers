@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,5 +12,11 @@ export class LoginComponent {
 		bg_image: "assets/images/banner/bnr-9.png",
 		title: "Login",
 	}
+
+  constructor(private router: Router) {}
+
+  navigateToCourse(){
+    this.router.navigate(['/courses-details'])
+  }
 
 }
