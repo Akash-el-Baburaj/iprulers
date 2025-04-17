@@ -1,24 +1,24 @@
 <div class="course-details dlab-tabs border-top bg-tabs">
     <ul class="nav nav-tabs ">
-        <li>
+        <li *ngIf="myCourse !== null">
             <a data-toggle="tab" href="#description" class="active">
                 <i class="fa fa-bookmark m-r10"></i>
                 <span class="title-head">Description</span>
             </a>
         </li>
-        <li>
+        <li *ngIf="myCourse !== null">
             <a data-toggle="tab" href="#module">
                 <i class="fa fa-cube"></i>
                 <span class="title-head">Modules & Sessions</span>
             </a>
         </li>
-        <li>
+        <li *ngIf="myCourse !== null">
             <a data-toggle="tab" href="#note">
                 <i class="fa fa-sticky-note"></i>
                 <span class="title-head">Note</span>
             </a>
         </li>
-        <li>
+        <li *ngIf="myCourse !== null">
             <a data-toggle="tab" href="#lab">
                 <i class="fa fa-flask"></i>
                 <span class="title-head">Lab</span>
@@ -30,15 +30,15 @@
                 <span class="title-head">Materials</span>
             </a>
         </li>
-        <li>
+        <!-- <li>
             <a data-toggle="tab" href="#review">
                 <i class="fa fa-comments"></i>
                 <span class="title-head">Review </span> <span class="text-primary">(3)</span>
             </a>
-        </li>
+        </li> -->
     </ul>
     <div class="tab-content">
-        <div id="description" class="tab-pane active">
+        <div id="description" class="tab-pane active"  *ngIf="myCourse !== null">
             <h3 class="m-t0 m-b10">About This Course</h3>
             <p>Suspendisse et justo. Praesent mattis commyolk augue Aliquam ornare hendrerit augue Cras tellus In pulvinar lectus a est Curabitur eget orci Cras laoreet. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse et justo. Praesent mattis commyolk augue aliquam ornare augue.</p>
             <h3 class="m-b10">Course’s Objectives</h3>	
@@ -61,10 +61,10 @@
                 </ul>
             </div>
         </div>
-        <div id="module" class="tab-pane">
+        <div id="module" class="tab-pane" *ngIf="myCourse !== null">
             <app-accordian1></app-accordian1>
         </div>
-        <div id="note" class="tab-pane">
+        <div id="note" class="tab-pane" *ngIf="myCourse !== null">
             <h3 class="m-t0">Note</h3>
             <div id="comments-1" class="dlab-instructor">
                 <ol class="commentlist row">
@@ -126,7 +126,7 @@
                 </ol>
             </div>
         </div>
-        <div id="lab" class="tab-pane">
+        <div id="lab" class="tab-pane" *ngIf="myCourse !== null">
             <h3 class="m-t0">Lab</h3>
             <div id="comments-1" class="dlab-instructor">
                 <ol class="commentlist row">
@@ -207,7 +207,7 @@
             </div>
         </div>
 
-        <div id="review" class="tab-pane comments-area">
+        <!-- <div id="review" class="tab-pane comments-area">
             <div class="row">
                 <div class="col-md-4 col-sm-5 m-b30">
                     <h5>Average Rating</h5>
@@ -385,6 +385,6 @@
                     </p>
                 </form>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

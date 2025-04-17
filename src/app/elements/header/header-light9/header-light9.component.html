@@ -16,7 +16,33 @@
                 </button>
                 <!-- extra nav -->
                 <div class="extra-nav">
-                    <a [routerLink]="['/login']" class="site-button btnhover17">Login &nbsp;&nbsp;<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                    <a [routerLink]="['/login']" class="site-button btnhover17" *ngIf="!loggedIn">Login &nbsp;&nbsp;<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                    <div ngbDropdown class="profile-dropdown d-flex align-items-center bg-white px-2 py-1 d-none d-lg-block" *ngIf="loggedIn">
+                        <button
+                          class="btn p-0 border-0 bg-transparent d-flex align-items-center"
+                          id="profileDropdown"
+                          ngbDropdownToggle
+                        >
+                          <img
+                            [src]="student.s_student_img"
+                            alt="Profile"
+                            class="rounded-circle me-2 profile-pic"
+                            (error)="onImageError($event)"
+                          />
+                          <div class="text-start">
+                            <div class="fw-semibold">{{student.s_name}}</div>
+                            <small class="text-muted">{{student.s_email}}</small>
+                          </div>
+                        </button>
+                      
+                        <div ngbDropdownMenu aria-labelledby="profileDropdown">
+                          <button class="dropdown-item" routerLink="/home">Home</button>
+                          <button class="dropdown-item" routerLink="/courses-details">My Course</button>
+                          <div class="dropdown-divider"></div>
+                          <button class="dropdown-item text-danger" >Logout</button>
+                        </div>
+                      </div>
+                      
                 </div>
                 <!-- Quik search -->
                 <div class="dlab-quik-search" class="{{searchToggle ? 'On d-block':'d-none'}}">
@@ -69,9 +95,34 @@
                         </li>
                     </ul>	 -->
                     <div class="d-md-block d-lg-none mt-3 text-center">
-                        <a [routerLink]="['/login']" class="site-button btnhover17">Login &nbsp;&nbsp;<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                        <a [routerLink]="['/login']" class="site-button btnhover17" *ngIf="!loggedIn">Login &nbsp;&nbsp;<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                        <ul class="nav navbar-nav" *ngIf="loggedIn">
+                            <li>
+                                <a [routerLink]="['/home']" class="site-button-link">Home</a>
+                                <a [routerLink]="['/courses-details']" class="site-button-link">My Course</a>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="dlab-social-icon">
+                    <div class="dlab-social-icon  w-100" style="position: absolute; bottom: 0 !important; ">
+                        <div class="widget m-t0" *ngIf="loggedIn">
+							<div class="teacher-info text-center p-0">
+								<div class="top-info">
+									<!-- <span class="price text-primary">Free</span>
+									<a href="" class="site-button button-sm">Take This Course</a> -->
+								</div>
+								<div class="teacher-pic"> 
+									<a href="#"><img [src]="student.s_student_img" alt="" (error)="onImageError($event)"></a> 
+								</div>
+								<h4 class="name">{{student.s_name}}</h4>
+								<!-- <span class="position">course instructor</span> -->
+								<div class="clearfix m-b20">
+									<a href="" class="site-button button-sm"><i class="fa fa-envelope m-r5"></i>{{student.s_email}}</a>
+								</div>
+							</div>
+						</div>
+                        <div class="m-b20 m-t20" *ngIf="loggedIn">
+                            <a href="javascript: void(0)" (click)="logout()" class="site-button btnhover13" style="background-color: red !important; color: #fff !important;" *ngIf="loggedIn">Logout &nbsp;&nbsp;<i class="fa fa-sign-out" style="font-size: 18px !important;" aria-hidden="true"></i></a>
+                        </div>
                         <ul>
                             <li><a class="site-button sharp-sm fa fa-facebook" href="javascript:void(0);"></a></li>
                             <li><a class="site-button sharp-sm fa fa-twitter" href="javascript:void(0);"></a></li>

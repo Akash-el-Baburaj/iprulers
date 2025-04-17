@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { LightgalleryModule } from 'lightgallery/angular';
-import { NgbTooltipModule, NgbAccordionModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTooltipModule, NgbAccordionModule, NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -196,6 +197,10 @@ import { Gallery6Component } from './elements/gallery/gallery6/gallery6.componen
 import { Courses6Component } from './elements/courses/courses6/courses6.component';
 import { LightgalleryComponent } from './elements/widgets/lightgallery/lightgallery.component';
 import { PdfViewerComponent } from './elements/pdf-viewer/pdf-viewer.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ErrorInterceptor } from './core/helpers/error.interceptor';
+import { JwtInterceptor } from './core/helpers/jwt.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -392,14 +397,23 @@ import { PdfViewerComponent } from './elements/pdf-viewer/pdf-viewer.component';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     LightgalleryModule,
+    NgbModule,
     NgbTooltipModule,
     NgbAccordionModule,
     NgbCollapseModule,
+    NgbDropdownModule,
+    HttpClientModule,
     AppRoutingModule,
     NgxExtendedPdfViewerModule,
   ],
-  providers: [],
+  providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

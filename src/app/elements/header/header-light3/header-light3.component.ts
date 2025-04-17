@@ -31,7 +31,9 @@ export class HeaderLight3Component {
   toggleSubMenu: string = '';
   currentHref: string = "";
   activeMenu: string = "";
-  
+  loggedIn: boolean = false;
+  student: any;
+
   constructor(public router: Router, private backLocation: PlatformLocation, private location: Location) {
     router.events.subscribe((val) => {
       if (location.path() != '') {
@@ -52,8 +54,16 @@ export class HeaderLight3Component {
 
   ngOnInit(): void {
     this.handleActiveMenu(this.currentHref);
+    if (localStorage.getItem('student')) {
+      this.loggedIn = true;
+      this.student = JSON.parse(localStorage.getItem('student')!);
+    } else {this.loggedIn = false;}
   }
 
+  onImageError(event: Event) {
+    const target = event.target as HTMLImageElement;
+    target.src = '../../../../assets/images/default-profile.png';
+  }
 
   themeColor(itme: any) {
     this.cssUrl = document.getElementById("cssFileUrl");
@@ -522,4 +532,9 @@ export class HeaderLight3Component {
       ]
     }
   ]
+
+  logout() {
+    localStorage.clear();
+    this.loggedIn = false;
+  }
 }

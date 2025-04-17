@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,9 +6,20 @@ import { Router } from '@angular/router';
   templateUrl: './courses6.component.html',
   styleUrls: ['./courses6.component.css']
 })
-export class Courses6Component {
+export class Courses6Component implements OnChanges {
+
+  @Input() course: any;
+
+  myCourse: any | null = null;
 
   constructor(private router: Router) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['courseList']) {
+      this.myCourse = this.course;
+      console.log('hereooo <<>>', this.myCourse)
+    }
+  }
 
   navigateToPdf() {
     this.router.navigate(['/course-pdf'])

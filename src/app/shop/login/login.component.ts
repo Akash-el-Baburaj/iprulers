@@ -1,22 +1,78 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthenticationService } from 'src/app/core/service/authentication.service';
+import { AlertService } from 'src/app/core/service/services/alert.service';
+import { ToastService } from 'src/app/core/service/services/toast.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   banner : any = {
 		pagetitle: "Login",
 		bg_image: "assets/images/banner/bnr-9.png",
 		title: "Login",
 	}
 
-  constructor(private router: Router) {}
+  loginForm!: FormGroup;
+
+  constructor(
+    private router: Router, 
+    private fb: FormBuilder, 
+    private authService: AuthenticationService,
+    private alertService: AlertService,
+    private toast: ToastService
+  ) {}
+
+  ngOnInit(): void {
+    localStorage.clear()
+    this._init_Form();
+  }
+
+  _init_Form() {
+    this.loginForm = this.fb.group({
+      userName: ['' , Validators.required],
+      password: ['', Validators.required]
+    })
+  }
 
   navigateToCourse(){
     this.router.navigate(['/courses-details'])
+  }
+
+  signin() {
+    if (this.loginForm.valid) {
+      const formData = new FormData();
+      formData.append('userName', this.loginForm.value.userName);
+      formData.append('password', this.loginForm.value.password);
+      this.authService.login(formData).subscribe({
+        next: (res: any) => {
+          if (res.success) {
+            this.alertService.success('Success!', res.message);
+            localStorage.setItem('studentID', res.data.user_id);
+            localStorage.setItem('token', res.data.api_key);
+            this.getStudentProfile();
+          } else {
+            this.alertService.error('Error!', res.message);
+          }
+        }
+      })
+    }
+
+  }
+
+  getStudentProfile() {
+    this.authService.getUserProfile().subscribe({
+      next: (res: any) => {
+        if (res.success) {
+          localStorage.setItem('student', JSON.stringify(res.data));
+          this.navigateToCourse();
+        }
+      }
+    })
   }
 
 }

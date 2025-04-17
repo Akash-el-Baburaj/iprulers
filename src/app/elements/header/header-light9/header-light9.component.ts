@@ -33,6 +33,8 @@ export class HeaderLight9Component {
   toggleSubMenu: string = '';
   currentHref: string = "";
   activeMenu: string = "";
+  loggedIn: boolean = false;
+  student: any;
 
   constructor(public router: Router, private backLocation: PlatformLocation, private location: Location) {
     router.events.subscribe((val) => {
@@ -58,8 +60,18 @@ export class HeaderLight9Component {
       /* } */
     })(jQuery);
     this.handleActiveMenu(this.currentHref);
+
+    if (localStorage.getItem('student')) {
+      this.loggedIn = true;
+      this.student = JSON.parse(localStorage.getItem('student')!);
+    } else {this.loggedIn = false;}
   }
 
+  onImageError(event: Event) {
+    const target = event.target as HTMLImageElement;
+    target.src = '../../../../assets/images/default-profile.png';
+  }
+  
 
   themeColor(itme: any) {
     this.cssUrl = document.getElementById("cssFileUrl");
@@ -102,6 +114,11 @@ export class HeaderLight9Component {
         })
       })
     })
+  }
+
+  logout() {
+    localStorage.clear();
+    this.loggedIn = false;
   }
 
   sidebarMenu: any[] = [

@@ -4,20 +4,20 @@
         <div class="col-12 mb-2">
             <!-- <div class="card mb-2" (click)="getCourseVideo(course)" 
                  [ngClass]="{'playing': isSelected(course), 'highlighted': isSelected(course)}"> -->
-            <div class="card mb-2" 
-                    [ngbTooltip]="'Course 1'"
+            <div class="card mb-2"
+                    [ngbTooltip]="'Course 1'" *ngFor="let course of myCourses; let i = index"
                     > <!--loop data here-->
-                    <div class="card-body d-flex justify-content-between align-items-center py-0">
+                    <div class="card-body d-flex justify-content-between align-items-center py-0" style="cursor: pointer;" (click)="viewCourse(course.id)">
                         <!-- Image (Left-Aligned) -->
                         <div class="course-image-container px-0" style="position: relative;">
-                                <img src="../../../../assets/images/courses/python.jpg" alt="">
+                                <img [src]="course.course_img" alt="">
                         </div>
 
                         <!-- Course Info (Right-Aligned) -->
                         <div class="course-info">
-                            <div class="post-meta truncate-text" >Course 1 </div>
+                            <div class="post-meta truncate-text" >{{course.course_title}}</div>
                             <h6 class="post-title text-truncate m-b0" title="'learn Course 1'">
-                                learn Course 1 
+                                {{course.description !== null ? course.description : 'course ' + i}}
                             </h6>
                             <div class="dlab-post-meta">
                                 <ul class="w-100 courses">
@@ -35,16 +35,14 @@
                         </div>
                     </div>
             </div>
-            <div class="card mb-2" 
+            <!-- <div class="card mb-2" 
                 [ngbTooltip]="'Course 2'"
-                > <!--loop data here-->
+                > 
                 <div class="card-body d-flex justify-content-between align-items-center py-0">
-                    <!-- Image (Left-Aligned) -->
                     <div class="course-image-container px-0" style="position: relative;">
                             <img src="../../../../assets/images/courses/avaya.webp" alt="">
                     </div>
 
-                    <!-- Course Info (Right-Aligned) -->
                     <div class="course-info">
                         <div class="post-meta truncate-text" >Course 2 </div>
                         <h6 class="post-title text-truncate m-b0" title="'learn Course 2'">
@@ -65,17 +63,15 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card mb-2" 
+            </div> -->
+            <!-- <div class="card mb-2" 
                 [ngbTooltip]="'Course 3'"
-                > <!--loop data here-->
+                > 
                 <div class="card-body d-flex justify-content-between align-items-center py-0">
-                    <!-- Image (Left-Aligned) -->
                     <div class="course-image-container px-0" style="position: relative;">
                             <img src="../../../../assets/images/courses/Untitled-design-11.png" alt="">
                     </div>
 
-                    <!-- Course Info (Right-Aligned) -->
                     <div class="course-info">
                         <div class="post-meta truncate-text" >Course 3 </div>
                         <h6 class="post-title text-truncate m-b0" title="'learn Course 3'">
@@ -96,17 +92,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card mb-2" 
-                [ngbTooltip]="'Course 4'"
-                > <!--loop data here-->
+            </div> -->
+            <!-- <div class="card mb-2" 
+                [ngbTooltip]="'Course 4'">
                 <div class="card-body d-flex justify-content-between align-items-center py-0">
-                    <!-- Image (Left-Aligned) -->
                     <div class="course-image-container px-0" style="position: relative;">
                             <img src="../../../../assets/images/courses/Untitled-design-2.png" alt="">
                     </div>
 
-                    <!-- Course Info (Right-Aligned) -->
                     <div class="course-info">
                         <div class="post-meta truncate-text" >Course 4 </div>
                         <h6 class="post-title text-truncate m-b0" title="'learn Course 4'">
@@ -127,7 +120,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
 
         </div>

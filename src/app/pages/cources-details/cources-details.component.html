@@ -17,7 +17,7 @@
 							<!-- <a [routerLink]="['/course-pdf']" class="text-primary" style="text-decoration: underline;">Explore More &nbsp;&nbsp;<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a> -->
 
 							<h2 class="m-t0 m-b10 font-28 title text-black">PCEP – Certified Entry-level Python Programmer Certification</h2>
-							<ul class="course-info">
+							<!-- <ul class="course-info">
 								<li> 
 									<i class="fa fa-user"></i> <span> 65</span> 
 									<div class="course-info-dec">Student</div>
@@ -30,7 +30,7 @@
 									<i class="fa fa-clock-o"></i> <span> 2.0</span> 
 									<div class="course-info-dec">Learning Hours</div>
 								</li>
-							</ul>
+							</ul> -->
 						</div>
 					</div>
 					<!-- Side bar start -->
@@ -59,7 +59,7 @@
 								</div>
 							</div>
 							<!-- <app-category-list1></app-category-list1> -->
-							<app-recent-posts1 class="d-none d-lg-block"></app-recent-posts1>
+							<app-recent-posts1 [courseList]="myCourseList" (courseSelected)="viewCourse($event)" class="d-none d-lg-block"></app-recent-posts1>
 						</aside>
 					</div>
 					<!-- Side bar END -->
@@ -74,14 +74,138 @@
 							<div class="col-lg-12">
 								
 								<!-- Tabs -->
-								<app-courses6></app-courses6>
+								<!-- <app-courses6 [course]="selectedCourse"></app-courses6> -->
+								<div class="course-details dlab-tabs border-top bg-tabs">
+									<ul class="nav nav-tabs ">
+										<li *ngIf="selectedCourse">
+											<a data-toggle="tab" href="#description" class="active">
+												<i class="fa fa-bookmark m-r10"></i>
+												<span class="title-head">Description</span>
+											</a>
+										</li>
+										<li *ngIf="selectedCourse">
+											<a data-toggle="tab" href="#module">
+												<i class="fa fa-cube"></i>
+												<span class="title-head">Modules & Sessions</span>
+											</a>
+										</li>
+										<li *ngIf="selectedCourse">
+											<a data-toggle="tab" href="#note">
+												<i class="fa fa-sticky-note"></i>
+												<span class="title-head">Note</span>
+											</a>
+										</li>
+										<li *ngIf="selectedCourse">
+											<a data-toggle="tab" href="#lab">
+												<i class="fa fa-flask"></i>
+												<span class="title-head">Lab</span>
+											</a>
+										</li>
+										<li>
+											<a data-toggle="tab" href="#material">
+												<i class="fa fa-file-text"></i>
+												<span class="title-head">Materials</span>
+											</a>
+										</li>
+										<!-- <li>
+											<a data-toggle="tab" href="#review">
+												<i class="fa fa-comments"></i>
+												<span class="title-head">Review </span> <span class="text-primary">(3)</span>
+											</a>
+										</li> -->
+									</ul>
+									<div class="tab-content">
+										<div id="description" class="tab-pane active"  *ngIf="selectedCourse">
+											<h3 class="m-t0 m-b10">About This Course</h3>
+											<p>{{selectedCourse.course.description ? selectedCourse.course.description : 'No Description'}}</p>
+											<!-- <p>Suspendisse et justo. Praesent mattis commyolk augue Aliquam ornare hendrerit augue Cras tellus In pulvinar lectus a est Curabitur eget orci Cras laoreet. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse et justo. Praesent mattis commyolk augue aliquam ornare augue.</p>
+											<h3 class="m-b10">Course’s Objectives</h3>	
+											<p>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"</p>
+											<h3 class="m-b10">Learning Outcomes</h3>
+											<ul class="list-checked primary">
+												<li>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and </li>
+												<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </li>
+												<li>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here'</li>
+												<li>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</li>
+												<li>Dorem ipsum dolor sit amet</li>
+											</ul> -->
+											<!-- <div class="m-t10">
+												<h5>Share :</h5>
+												<ul class="dlab-social-icon">
+													<li><a href="javascript:void(0);" class="site-button circle fa fa-facebook facebook"></a></li>
+													<li><a href="javascript:void(0);" class="site-button circle fa fa-twitter twitter"></a></li>
+													<li><a href="javascript:void(0);" class="site-button circle fa fa-linkedin linkedin"></a></li>
+													<li><a href="javascript:void(0);" class="site-button circle fa fa-whatsapp whatsapp"></a></li>
+												</ul>
+											</div> -->
+										</div>
+										<div id="module" class="tab-pane" *ngIf="selectedCourse">
+											<app-accordian1></app-accordian1>
+										</div>
+										<div id="note" class="tab-pane" *ngIf="selectedCourse">
+											<h3 class="m-t0">Note</h3>
+											<div id="comments-1" class="dlab-instructor">
+												<ol class="commentlist row">
+													<li class="comment col-md-6 w-100 mb-0" style="height: 80px !important;" *ngFor="let note of selectedCourse.notes">
+														<div class="comment_container" (click)="navigateToPdf(note.note_file)" style="height: fit-content !important;"> <img class="avatar avatar-60 photo" src="assets/images/icon/pdf-icon.png" alt="">
+															<div class="comment-text">
+																<h3 class="author m-t0 m-b0" style="margin-bottom: 0px !important;">{{note.title}}</h3> 
+																<div class="w3-separator bg-primary"></div>
+																<div class="description m-b15">
+																	<p>{{note.createdAt | date: 'dd/mm/yyyy'}}</p>
+																</div>
+															</div>
+														</div>
+													</li>
+												</ol>
+											</div>
+										</div>
+										<div id="lab" class="tab-pane" *ngIf="selectedCourse">
+											<h3 class="m-t0">Lab</h3>
+											<div id="comments-1" class="dlab-instructor">
+												<ol class="commentlist row">
+													<li class="comment col-md-6 w-100 mb-0"  style="height: 80px !important;"  *ngFor="let lab of selectedCourse.labs">
+														<div class="comment_container" (click)="navigateToPdf(lab.lab_file)" style="height: fit-content !important;"> <img class="avatar avatar-60 photo" src="assets/images/icon/pdf-icon.png" alt="">
+															<div class="comment-text">
+																<h3 class="author m-t0 m-b0" style="margin-bottom: 0px !important;">{{lab.title}}</h3> 
+																<div class="w3-separator bg-primary"></div>
+																<div class="description m-b15">
+																	<p>{{lab.createdAt | date: 'dd/mm/yyyy'}}</p>
+																</div>
+															</div>
+														</div>
+													</li>
+												</ol>
+											</div>
+										</div>
+										<div id="material" class="tab-pane">
+											<h3 class="m-t0">Materials</h3>
+											<div id="comments-1" class="dlab-instructor">
+												<ol class="commentlist row">
+													<li class="comment col-md-6 w-100 mb-0"  style="height: 80px !important;" *ngFor="let material of myMaterialList">
+														<div class="comment_container" (click)="material.type === 'pdf' ? navigateToPdf(material.document_link) : openLink(material.link)" style="height: fit-content !important;"> <img class="avatar avatar-60 photo" [src]="material.type === 'pdf' ? 'assets/images/icon/pdf-icon.png' : 'assets/images/icon/link-icon.png'" alt="">
+															<div class="comment-text">
+																<h3 class="author m-t0 m-b0" style="margin-bottom: 0px !important;">{{material.title}}</h3> 
+																<div class="w3-separator bg-primary"></div>
+																<div class="description m-b15">
+																	<p>{{material.type}}</p>
+																</div>
+															</div>
+														</div>
+													</li>
+												</ol>
+											</div>
+										</div>
+						
+									</div>
+								</div>
 								<!-- Tabs End-->
 
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-12 d-md-block d-lg-none mt-2">
-						<app-recent-posts1
+						<app-recent-posts1 [courseList]="myCourseList" (courseSelected)="viewCourse($event)" 
 						  class="d-block d-lg-none"></app-recent-posts1>
 					  </div>
 					  <div class="col-lg-12 d-md-block d-lg-none mt-2">
