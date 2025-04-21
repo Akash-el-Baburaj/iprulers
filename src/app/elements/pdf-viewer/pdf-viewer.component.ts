@@ -30,7 +30,7 @@ export class PdfViewerComponent implements AfterViewInit {
     }
   }
 
-  constructor(private sanitizer: DomSanitizer,private route: ActivatedRoute) {
+  constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       if (params['data']) {
         try {
@@ -41,11 +41,15 @@ export class PdfViewerComponent implements AfterViewInit {
           console.error('Invalid note data', e);
         }
       }
+      this.setSanitizedUrl();
     });
   }
-
+  
   ngOnInit() {
-    
+    this.setSanitizedUrl();
+  }
+  
+  setSanitizedUrl() {
     this.sanitizedPdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       this.pdfUrl + '#toolbar=0&navpanes=0&scrollbar=1'
     );
