@@ -13,6 +13,7 @@ export class Courses6Component implements OnChanges {
   myCourse: any | null = null;
 
   constructor(private router: Router) {}
+  
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['courseList']) {

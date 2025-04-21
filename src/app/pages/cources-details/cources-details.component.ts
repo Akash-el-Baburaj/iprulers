@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from 'src/app/core/service/course.service';
 import { Router } from '@angular/router';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-cources-details',
@@ -18,8 +19,13 @@ export class CourcesDetailsComponent implements OnInit {
   myCourseList: any[] = [];
   myMaterialList: any[] = [];
   selectedCourse: any;
+  videoId = 'YOUR_VIDEO_ID';
+  vimeoUrl: SafeResourceUrl;
 
-  constructor(private courseService: CourseService,private router: Router) {}
+  constructor(private courseService: CourseService,private router: Router, private sanitizer: DomSanitizer) {
+      this.vimeoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+        `https://player.vimeo.com/video/${this.videoId}`
+      );}
 
   ngOnInit(): void {
     this.getMyCourseList();
