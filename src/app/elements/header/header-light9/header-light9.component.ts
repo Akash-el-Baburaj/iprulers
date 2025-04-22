@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 declare var jQuery: any;
 import { Router } from '@angular/router';
 import { Location, PlatformLocation } from '@angular/common';
+import { AlertService } from 'src/app/core/service/services/alert.service';
 
 interface MenuType {
   title: string;
@@ -36,7 +37,7 @@ export class HeaderLight9Component {
   loggedIn: boolean = false;
   student: any;
 
-  constructor(public router: Router, private backLocation: PlatformLocation, private location: Location) {
+  constructor(public router: Router, private backLocation: PlatformLocation, private location: Location, private alertService: AlertService) {
     router.events.subscribe((val) => {
       if (location.path() != '') {
         this.currentHref = location.path();
@@ -117,8 +118,10 @@ export class HeaderLight9Component {
   }
 
   logout() {
+    this.alertService.success('See you again', 'You are now successfully Logged out.' );
     localStorage.clear();
     this.loggedIn = false;
+    this.router.navigate(['/login']);
   }
 
   sidebarMenu: any[] = [
