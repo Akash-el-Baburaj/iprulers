@@ -16,7 +16,7 @@
 						<div class="course-view text-center">
 							<!-- <a [routerLink]="['/course-pdf']" class="text-primary" style="text-decoration: underline;">Explore More &nbsp;&nbsp;<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a> -->
 
-							<h2 class="m-t0 m-b10 font-28 title text-black">PCEP – Certified Entry-level Python Programmer Certification</h2>
+							<h2 class="m-t0 m-b10 font-28 title text-black">{{SelectedCourseName ? SelectedCourseName : 'Course Title'}}</h2>
 							<!-- <ul class="course-info">
 								<li> 
 									<i class="fa fa-user"></i> <span> 65</span> 
@@ -43,12 +43,12 @@
 										<a href="" class="site-button button-sm">Take This Course</a> -->
 									</div>
 									<div class="teacher-pic"> 
-										<a href="#"><img src="assets/images/testimonials/pic1.jpg" alt=""></a> 
+										<a href="#"><img [src]="user.s_student_img" (error)="onImageError($event)" alt=""></a> 
 									</div>
-									<h4 class="name">Henry H. Garrick</h4>
-									<span class="position">course instructor</span>
+									<h4 class="name">{{user.s_name}}</h4>
+									<span class="position">Student</span>
 									<div class="clearfix m-b20">
-										<a href="" class="site-button button-sm"><i class="fa fa-envelope m-r5"></i>user@example.com</a>
+										<a href="" class="site-button button-sm"><i class="fa fa-envelope m-r5"></i>{{user.s_email}}</a>
 									</div>
 									<!-- <ul class="social-list">
 										<li><a href="javascript:void(0);" class="site-button circle fa fa-facebook facebook"></a></li>
@@ -67,17 +67,37 @@
 					<div class="col-xl-9 col-lg-8 col-md-12 m-b30">
 						<div class="row">
 							<div class="col-lg-12">
-								<div class="media m-b30">
-									<img src="assets/images/blog/default/thum1.jpg" alt="">
-									<!-- <iframe
-										[src]="vimeoUrl"
-										width="640"
-										height="360"
-										frameborder="0"
-										allow="autoplay; fullscreen; picture-in-picture"
-										allowfullscreen>
-										</iframe> -->
-
+								<div class="media m-b30" #mediaDiv>
+									<img src="assets/images/blog/default/thum1.jpg" *ngIf="!videoPlayerOpen" alt="">
+									<!-- <app-video-embed
+										class="w-100"
+										*ngIf="videoPlayerOpen"
+										[VideoURL]="getSafeUrl(vimeoUrl)"
+										[VideoType]="VideoType"
+										[videoId]="videoId"
+									></app-video-embed> -->
+								
+									<div class="video-container" (contextmenu)="$event.preventDefault()">
+										<!-- YouTube & Vimeo Embed -->
+										<iframe *ngIf="videoType !== 'server'" 
+												[src]="embedUrl | safeUrl"
+												frameborder="0"
+												allow="autoplay; encrypted-media"
+												allowfullscreen>
+										</iframe>
+									  
+										<!-- Server-hosted video -->
+										<video *ngIf="videoType === 'server'"
+											   [src]="vimeoUrl"
+											   controls
+											   autoplay
+											   controlsList="nodownload"
+											   disablePictureInPicture
+											   (contextmenu)="$event.preventDefault()"
+											   style="width: 100%; border-radius: 10px;">
+										</video>
+									  </div>
+									  
 								</div>
 							</div>
 							<div class="col-lg-12">
@@ -149,13 +169,65 @@
 											</div> -->
 										</div>
 										<div id="module" class="tab-pane" *ngIf="selectedCourse">
-											<app-accordian1></app-accordian1>
+											<!-- <app-accordian1></app-accordian1> -->
+											<div class="dlab-accordion faq-1 box-sort-in m-b30 space  accdown1" id="accordion001">
+												<div class="panel" *ngFor="let module of selectedCourse.modules; let i = index">
+													<div class="acod-head">
+													  <h6 class="acod-title">
+														<a href="javascript:void(0);" [attr.data-toggle]="'collapse'" class="collapsed" [attr.data-target]="'#collapse' + i" [attr.aria-expanded]="i === 0">
+														  {{ module.module_title }}
+														  <p class="post-title text-truncate m-b0" style="font-size: 13px !important; font-weight: lighter;">
+															Module {{ i + 1 }} &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 5 Hours 30 Minutes
+														  </p>
+														</a>
+													  </h6>
+													</div>
+													<div [id]="'collapse' + i" class="acod-body collapse" data-parent="#accordion001">
+													  <div class="acod-content" *ngFor="let session of module.sessions; let j = index"   [ngClass]="{'border border-primary': session.id === selectedSessionId && module.id === selectedModuleId}">
+														<div class="card w-100" style="height: fit-content !important; border: none !important; cursor: pointer;">
+														  <div class="card-body" style="height: fit-content !important;" (click)="playVideo(session.url, module.id, session.id)">
+															<h6 class="post-meta truncate-text m-b0">{{ session.session_title }}</h6>
+															<p class="post-title text-truncate m-b0" style="font-size: 13px !important;">
+															  {{ session.hour }} Hours {{ session.minute }} Minutes {{ session.seconds }} Seconds
+															</p>
+														  </div>
+														</div>
+													  </div>
+													</div>
+												  </div>
+												  
+												<!-- <div class="panel" *ngFor="let module of selectedCourse.modules; let i = index">
+													<div class="acod-head">
+														<h6 class="acod-title">
+															 <a href="javascript:void(0);" data-toggle="collapse" data-target="#collapse1" [aria-expanded]="i === 0">{{module.module_title}}
+																<p class="post-title text-truncate m-b0" style="font-size: 13px !important; font-weight: lighter;">
+																	Module {{i + !}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;5 Hours 30 Minutes 
+																</p>
+															</a> 
+														</h6>
+														
+													</div>
+													<div id="collapse1" class="acod-body collapse show" data-parent="#accordion001" *ngFor="let session of module.sessions">
+														<div class="acod-content">
+															<div class="card w-100" style="height: fit-content !important; border: none !important">
+																<div class="card-body" style="height: fit-content !important;">
+																	<h6 class="post-meta truncate-text m-b0" >{{session.session_title}} </h6>
+																	<p class="post-title text-truncate m-b0" style="font-size: 13px !important;">
+																		{{session.hour}} Hours {{session.minute}} Minutes {{session.seconds}} Seconds
+																	</p>
+											
+																</div>
+															</div>
+														</div>
+													</div>
+												</div> -->
+											</div>
 										</div>
 										<div id="note" class="tab-pane" *ngIf="selectedCourse">
 											<h3 class="m-t0">Note</h3>
 											<div id="comments-1" class="dlab-instructor">
-												<ol class="commentlist row">
-													<li class="comment col-md-6 w-100 mb-0" style="height: 80px !important;" *ngFor="let note of selectedCourse.notes">
+												<ol class="commentlist row" *ngIf="selectedCourse.notes.length > 0">
+													<li class="comment col-md-6 w-100 mb-0" style="height: 80px !important; cursor: pointer;" *ngFor="let note of selectedCourse.notes">
 														<div class="comment_container" (click)="navigateToPdf(note.note_file)" style="height: fit-content !important;"> <img class="avatar avatar-60 photo" src="assets/images/icon/pdf-icon.png" alt="">
 															<div class="comment-text">
 																<h3 class="author m-t0 m-b0" style="margin-bottom: 0px !important;">{{note.title}}</h3> 
@@ -167,13 +239,18 @@
 														</div>
 													</li>
 												</ol>
+												<div *ngIf="selectedCourse.notes.length === 0" class="d-flex justify-content-center align-items-center">
+													<h5>
+														No notes found
+													</h5>
+												</div>
 											</div>
 										</div>
 										<div id="lab" class="tab-pane" *ngIf="selectedCourse">
 											<h3 class="m-t0">Lab</h3>
 											<div id="comments-1" class="dlab-instructor">
-												<ol class="commentlist row">
-													<li class="comment col-md-6 w-100 mb-0"  style="height: 80px !important;"  *ngFor="let lab of selectedCourse.labs">
+												<ol class="commentlist row" *ngIf="selectedCourse.labs.length > 0">
+													<li class="comment col-md-6 w-100 mb-0"  style="height: 80px !important;cursor: pointer;"  *ngFor="let lab of selectedCourse.labs">
 														<div class="comment_container" (click)="navigateToPdf(lab.lab_file)" style="height: fit-content !important;"> <img class="avatar avatar-60 photo" src="assets/images/icon/pdf-icon.png" alt="">
 															<div class="comment-text">
 																<h3 class="author m-t0 m-b0" style="margin-bottom: 0px !important;">{{lab.title}}</h3> 
@@ -185,13 +262,18 @@
 														</div>
 													</li>
 												</ol>
+												<div *ngIf="selectedCourse.labs.length === 0" class="d-flex justify-content-center align-items-center">
+													<h5>
+														No labs found
+													</h5>
+												</div>
 											</div>
 										</div>
 										<div id="material" class="tab-pane">
 											<h3 class="m-t0">Materials</h3>
 											<div id="comments-1" class="dlab-instructor">
-												<ol class="commentlist row">
-													<li class="comment col-md-6 w-100 mb-0"  style="height: 80px !important;" *ngFor="let material of myMaterialList">
+												<ol class="commentlist row" *ngIf="myMaterialList.length > 0">
+													<li class="comment col-md-6 w-100 mb-0"  style="height: 80px !important; cursor: pointer;" *ngFor="let material of myMaterialList">
 														<div class="comment_container" (click)="material.type === 'pdf' ? navigateToPdf(material.document_link) : openLink(material.link)" style="height: fit-content !important;"> <img class="avatar avatar-60 photo" [src]="material.type === 'pdf' ? 'assets/images/icon/pdf-icon.png' : 'assets/images/icon/link-icon.png'" alt="">
 															<div class="comment-text">
 																<h3 class="author m-t0 m-b0" style="margin-bottom: 0px !important;">{{material.title}}</h3> 
@@ -203,6 +285,11 @@
 														</div>
 													</li>
 												</ol>
+												<div *ngIf="myMaterialList.length === 0" class="d-flex justify-content-center align-items-center">
+													<h5>
+														No Materials found
+													</h5>
+												</div>
 											</div>
 										</div>
 						
@@ -225,12 +312,12 @@
 									<a href="" class="site-button button-sm">Take This Course</a> -->
 								</div>
 								<div class="teacher-pic"> 
-									<a href="#"><img src="assets/images/testimonials/pic1.jpg" alt=""></a> 
+									<a href="#"><img [src]="user.s_student_img" (error)="onImageError($event)" alt=""></a> 
 								</div>
-								<h4 class="name">Henry H. Garrick</h4>
-								<span class="position">course instructor</span>
+								<h4 class="name">{{user.s_name}}</h4>
+								<span class="position">Student</span>
 								<div class="clearfix m-b20">
-									<a href="" class="site-button button-sm"><i class="fa fa-envelope m-r5"></i>user@example.com</a>
+									<a href="" class="site-button button-sm"><i class="fa fa-envelope m-r5"></i>{{user.s_email}}</a>
 								</div>
 								<!-- <ul class="social-list">
 									<li><a href="javascript:void(0);" class="site-button circle fa fa-facebook facebook"></a></li>

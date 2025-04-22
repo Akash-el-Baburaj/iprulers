@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+import { ContentProtectionService } from './core/service/content-protection.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,11 @@ import { Component, HostListener } from '@angular/core';
 export class AppComponent {
   title = 'iprulers';
   isProtected = false;
+  constructor(private contentProtectionService: ContentProtectionService) {}
 
+  ngOnInit() {
+    this.contentProtectionService.initAllProtections();
+  }
   // @HostListener('contextmenu', ['$event'])
   // onRightClick(event: Event) {
   //   event.preventDefault();

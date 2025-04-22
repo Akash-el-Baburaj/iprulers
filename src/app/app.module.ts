@@ -201,6 +201,10 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorInterceptor } from './core/helpers/error.interceptor';
 import { JwtInterceptor } from './core/helpers/jwt.interceptor';
+import { VideoEmbedComponent } from './elements/video-embed/video-embed.component';
+
+import { SafeUrlPipe } from './core/pipes/safe-url.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -394,6 +398,8 @@ import { JwtInterceptor } from './core/helpers/jwt.interceptor';
     Courses6Component,
     LightgalleryComponent,
     PdfViewerComponent,
+    VideoEmbedComponent,
+    SafeUrlPipe,
   ],
   imports: [
     BrowserModule,
@@ -409,6 +415,7 @@ import { JwtInterceptor } from './core/helpers/jwt.interceptor';
     AppRoutingModule,
     NgxExtendedPdfViewerModule,
   ],
+  exports:[VideoEmbedComponent, SafeUrlPipe],
   providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

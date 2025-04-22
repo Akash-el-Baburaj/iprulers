@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CourseService } from 'src/app/core/service/course.service';
+import { AuthenticationService } from 'src/app/core/service/authentication.service';
 import { Router } from '@angular/router';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
@@ -20,14 +21,32 @@ export class CourcesDetailsComponent implements OnInit {
   myMaterialList: any[] = [];
   selectedCourse: any;
   videoId = 'YOUR_VIDEO_ID';
-  vimeoUrl: SafeResourceUrl;
+  vimeoUrl: string = '';
+  videoPlayerOpen: boolean = false;
+  VideoType: string = '';
+  videoEmbedUrl: any;
+  courseVideo: any;
 
-  constructor(private courseService: CourseService,private router: Router, private sanitizer: DomSanitizer) {
-      this.vimeoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-        `https://player.vimeo.com/video/${this.videoId}`
-      );}
+  selectedModuleIndex: number | null = null;
+  selectedSessionIndex: number | null = null;
+
+
+  @ViewChild('mediaDiv') mediaDiv!: ElementRef;
+  selectedModuleId: string = '';
+  selectedSessionId: string = '';
+
+  duration: number | null = null;
+  isLoading: boolean = true;
+  isVideoWatched: boolean = false;
+  SelectedCourseName: any;
+
+  user: any;
+
+  constructor(private courseService: CourseService,private router: Router, private sanitizer: DomSanitizer, private authService: AuthenticationService) {
+      }
 
   ngOnInit(): void {
+    this.getProfile();
     this.getMyCourseList();
   }
 
@@ -38,6 +57,14 @@ export class CourcesDetailsComponent implements OnInit {
           this.myCourseList = res.data.courses;
           this.myMaterialList = res.data.materials;
         }
+      }
+    })
+  }
+
+  getProfile() {
+    this.authService.getUserProfile().subscribe({
+      next: (res: any) => {
+        this.user = res.data;
       }
     })
   }
@@ -53,17 +80,110 @@ export class CourcesDetailsComponent implements OnInit {
       next: (res: any) => {
         if (res.success) {
           this.selectedCourse = res.data;
+          this.SelectedCourseName = this.selectedCourse.course.title
           console.log('course by ID => ', res)
         }
       }
     })
   }
+  // navigateToPdf(pdfUrl: string) {
+  //   const encodedData = encodeURIComponent(pdfUrl)
+  //   this.router.navigate(['/course-pdf'], { queryParams: { data: encodedData } })
+  // }
+
   navigateToPdf(pdfUrl: string) {
-    const encodedData = encodeURIComponent(pdfUrl)
-    this.router.navigate(['/course-pdf'], { queryParams: { data: encodedData } })
+    const encodedData = encodeURIComponent(pdfUrl);
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree(['/course-pdf'], { queryParams: { data: encodedData } })
+    );
+    const fullUrl = `${window.location.origin}${url}`;
+    window.open(fullUrl, '_blank');
   }
+  
 
   openLink(link: string) {
     window.open(link, '_blank');
   }
-}
+
+  onImageError(event: Event) {
+    const target = event.target as HTMLImageElement;
+    target.src = '../../../../assets/images/default-profile.png';
+  }
+  // playVideo(url: string, module: string, session: string) {
+  //   this.selectedModuleId = module;
+  //   this.selectedSessionId = session;
+  //   this.vimeoUrl = '';
+  //   this.videoPlayerOpen = true;
+  //   if (url) {
+  //     this.vimeoUrl = url;
+  //     this.getCourseVideo(this.vimeoUrl, true);
+  //   }
+  // }
+
+  // playVideo(url: string, moduleId: string, sessionId: string) {
+  //   // Update selection
+  //   this.selectedModuleId = moduleId;
+  //   this.selectedSessionId = sessionId;
+  
+  //   // Reset vimeoUrl temporarily to trigger change detection
+  //   if (this.vimeoUrl === '') {
+  //     this.vimeoUrl = '';
+  //     setTimeout(() => {
+  //       this.vimeoUrl = url;
+  //       this.getCourseVideo(url, true);
+  //     }, 50);
+  //   } else {
+  //     this.vimeoUrl = url;
+  //     this.getCourseVideo(url, true);
+  //   }
+  
+  //   this.videoPlayerOpen = true;
+  // }
+  playVideo(url: string, moduleId: string, sessionId: string) {
+    this.selectedModuleId = moduleId;
+    this.selectedSessionId = sessionId;
+    this.videoPlayerOpen = true;
+    this.vimeoUrl = '';
+    this.VideoType = url.includes('vimeo.com') ? 'vimeo' : 'server';
+    this.vimeoUrl = url;
+    if(this.vimeoUrl) {
+      setTimeout(() => {
+        if (this.mediaDiv?.nativeElement) {
+          const element = this.mediaDiv.nativeElement;
+          const elementTop = element.getBoundingClientRect().top + window.scrollY;
+          const offset = 75; 
+          const targetPosition = elementTop - offset;
+  
+          const finalPosition = Math.max(0, targetPosition);
+  
+          window.scrollTo({
+            top: finalPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 0); 
+    }
+  }
+  
+
+  get videoType(): 'youtube' | 'vimeo' | 'server' {
+    if (this.vimeoUrl.includes('youtube.com') || this.vimeoUrl.includes('youtu.be')) return 'youtube';
+    if (this.vimeoUrl.includes('vimeo.com')) return 'vimeo';
+    return 'server';
+  }
+
+  get embedUrl(): string {
+    if (this.videoType === 'youtube') {
+      const videoId = this.vimeoUrl.split('v=')[1]?.split('&')[0] || this.vimeoUrl.split('/').pop();
+      return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1&controls=1`;
+    }
+    if (this.videoType === 'vimeo') {
+      const videoId = this.vimeoUrl.split('/').pop();
+      return `https://player.vimeo.com/video/${videoId}?autoplay=1`;
+    }
+    return '';
+  }
+  
+
+ 
+  }
