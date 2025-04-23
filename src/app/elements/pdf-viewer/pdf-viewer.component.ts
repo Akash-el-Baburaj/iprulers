@@ -1,6 +1,7 @@
 import { Component, Input, AfterViewInit, ViewChild, ElementRef, HostListener, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-pdf-viewer',
@@ -30,7 +31,7 @@ export class PdfViewerComponent implements AfterViewInit, OnInit {
     }
   }
 
-  constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute) {
+  constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute, private location: Location) {
     this.route.queryParams.subscribe(params => {
       if (params['data']) {
         try {
@@ -103,6 +104,10 @@ export class PdfViewerComponent implements AfterViewInit, OnInit {
     });
 
     observer.observe(document.body, { attributes: true, attributeFilter: ['isScreenRecording'] });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }
 

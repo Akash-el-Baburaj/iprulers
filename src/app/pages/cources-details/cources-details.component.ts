@@ -86,19 +86,19 @@ export class CourcesDetailsComponent implements OnInit {
       }
     })
   }
-  // navigateToPdf(pdfUrl: string) {
-  //   const encodedData = encodeURIComponent(pdfUrl)
-  //   this.router.navigate(['/course-pdf'], { queryParams: { data: encodedData } })
-  // }
-
   navigateToPdf(pdfUrl: string) {
-    const encodedData = encodeURIComponent(pdfUrl);
-    const url = this.router.serializeUrl(
-      this.router.createUrlTree(['/course-pdf'], { queryParams: { data: encodedData } })
-    );
-    const fullUrl = `${window.location.origin}${url}`;
-    window.open(fullUrl, '_blank');
+    const encodedData = encodeURIComponent(pdfUrl)
+    this.router.navigate(['/course-pdf'], { queryParams: { data: encodedData } })
   }
+
+  // navigateToPdf(pdfUrl: string) {
+  //   const encodedData = encodeURIComponent(pdfUrl);
+  //   const url = this.router.serializeUrl(
+  //     this.router.createUrlTree(['/course-pdf'], { queryParams: { data: encodedData } })
+  //   );
+  //   const fullUrl = `${window.location.origin}${url}`;
+  //   window.open(fullUrl, '_blank');
+  // }
   
 
   openLink(link: string) {
