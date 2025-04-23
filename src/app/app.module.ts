@@ -204,6 +204,8 @@ import { JwtInterceptor } from './core/helpers/jwt.interceptor';
 import { VideoEmbedComponent } from './elements/video-embed/video-embed.component';
 
 import { SafeUrlPipe } from './core/pipes/safe-url.pipe';
+// import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+
 
 @NgModule({
   declarations: [

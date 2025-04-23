@@ -23,8 +23,31 @@
     border: none;
     width: 100%;
     height: 100%;
-    overflow-y: auto; /* Allows scrolling */
+    overflow-y: scroll; /* Allows scrolling */
     pointer-events: auto; /* Enables scrolling */
+    /* pointer-events: none;   */
+    user-select: none; /* Disable text selection */
+    -webkit-user-drag: none; /* Disable drag in Safari */
+    touch-action: pan-y; /* Allow vertical gestures only */
+  }
+
+  .pdf-viewer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.377);
+  }
+  canvas {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .center-page {
+    display: flex;
+    justify-content: center;
   }
   
   
