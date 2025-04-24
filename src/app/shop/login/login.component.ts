@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/service/authentication.service';
 import { AlertService } from 'src/app/core/service/services/alert.service';
 import { ToastService } from 'src/app/core/service/services/toast.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -52,7 +53,23 @@ export class LoginComponent implements OnInit {
       this.authService.login(formData).subscribe({
         next: (res: any) => {
           if (res.success) {
-            this.alertService.success('Success!', res.message);
+            if (res.data.logout){
+              Swal.fire({
+                title: 'Are you sure?',
+                text: res.message,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                confirmButtonColor: '#3085d6',
+                cancelButtonText: 'Cancel',
+                cancelButtonColor: '#ffb703',
+                reverseButtons: true
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  this.forceFullSignin();
+                }
+              });
+            } else{this.alertService.success('Success!', res.message);}
             localStorage.setItem('studentID', res.data.user_id);
             localStorage.setItem('token', res.data.api_key);
             this.getStudentProfile();
@@ -63,6 +80,27 @@ export class LoginComponent implements OnInit {
       })
     }
 
+  }
+
+  forceFullSignin() {
+    if (this.loginForm.valid) {
+      const formData = new FormData();
+      formData.append('userName', this.loginForm.value.userName);
+      formData.append('password', this.loginForm.value.password);
+      formData.append('checkLoginUser', 'true');
+      this.authService.login(formData).subscribe({
+        next: (res: any) => {
+          if (res.success) {
+            this.alertService.success('Success!', res.message);
+            localStorage.setItem('studentID', res.data.user_id);
+            localStorage.setItem('token', res.data.api_key);
+            this.getStudentProfile();
+          } else {
+            this.alertService.error('Error!', res.message);
+          }
+        }
+      })
+    }
   }
 
   getStudentProfile() {
