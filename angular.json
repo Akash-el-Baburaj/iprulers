@@ -28,7 +28,8 @@
               "src/styles.css",
               "src/assets/plugins/line-awesome/css/line-awesome.min.css",
               "src/assets/plugins/themify/themify-icons.css",
-              "src/assets/css/coming-soon.min.css"
+              "src/assets/css/coming-soon.min.css",
+              "node_modules/@mdi/font/css/materialdesignicons.min.css"
             ],
             "scripts": [
               "src/assets/js/jquery.min.js",

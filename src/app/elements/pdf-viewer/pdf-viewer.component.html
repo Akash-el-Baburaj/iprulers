@@ -13,7 +13,7 @@
   </div>
   <div class="toolbar">
     <button class="btn btn-primary" (click)="toggleScaleMode()">
-      <i class="fa" [ngClass]="scaleMode === 'fit' ? 'fa-expand' : 'fa-compress'"></i>
+      <i class="mdi" [ngClass]="scaleMode === 'fit' ? 'mdi-arrow-collapse-all' : 'mdi-arrow-expand-all'"></i>
       {{ scaleMode === 'fit' ? 'Original Size' : 'Fit to Screen' }}
     </button>
   </div>

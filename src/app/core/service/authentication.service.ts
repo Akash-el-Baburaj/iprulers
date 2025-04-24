@@ -34,11 +34,7 @@ export class AuthenticationService {
     }
   }
 
-  logout(): void {
-    const layoutColor = localStorage.getItem('layoutColor');
-    const xxCode = localStorage.getItem('xx-code');
-    localStorage.clear();
-    sessionStorage.clear();
-    this.user = null;
+  logout() {
+    return this.http.get<any>(`${this.baseUrl}/user/logout`)
   }
 }
