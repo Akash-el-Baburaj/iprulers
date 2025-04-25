@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Location, PlatformLocation } from '@angular/common';
 import { AlertService } from 'src/app/core/service/services/alert.service';
 import { AuthenticationService } from 'src/app/core/service/authentication.service';
+import Swal from 'sweetalert2';
 
 interface MenuType {
   title: string;
@@ -113,6 +114,24 @@ export class HeaderLight3Component {
   sidebarMenu: MenuType[] = []
 
   logout() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Are you sure you want to log out',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      confirmButtonColor: '#3085d6',
+      cancelButtonText: 'Cancel',
+      cancelButtonColor: '#ffb703',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.confirmLogout();
+      }
+    })
+  }
+
+  confirmLogout() {
     this.authService.logout().subscribe({
       next: (res: any) => {
         console.log(res)
