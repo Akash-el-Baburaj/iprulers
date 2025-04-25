@@ -3,6 +3,7 @@ import { CourseService } from 'src/app/core/service/course.service';
 import { AuthenticationService } from 'src/app/core/service/authentication.service';
 import { Router } from '@angular/router';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+import { AlertService } from 'src/app/core/service/services/alert.service';
 
 @Component({
   selector: 'app-cources-details',
@@ -42,7 +43,7 @@ export class CourcesDetailsComponent implements OnInit {
 
   user: any;
 
-  constructor(private courseService: CourseService,private router: Router, private sanitizer: DomSanitizer, private authService: AuthenticationService) {
+  constructor(private courseService: CourseService,private router: Router, private alertService: AlertService, private sanitizer: DomSanitizer, private authService: AuthenticationService) {
       }
 
   ngOnInit(): void {
@@ -56,6 +57,9 @@ export class CourcesDetailsComponent implements OnInit {
         if (res.success) {
           this.myCourseList = res.data.courses;
           this.myMaterialList = res.data.materials;
+        } else if (res.message.includes('Invalid user')) {
+          this.alertService.warn('Signed Out!', 'You have been signed out because your account was accessed from another device.');
+          this.authService.forceLogout();
         }
       }
     })
@@ -65,6 +69,10 @@ export class CourcesDetailsComponent implements OnInit {
     this.authService.getUserProfile().subscribe({
       next: (res: any) => {
         this.user = res.data;
+        if (res.message.includes('Invalid user')) {
+          this.alertService.warn('Signed Out!', 'You have been signed out because your account was accessed from another device.');
+          this.authService.forceLogout();
+        }
       }
     })
   }
@@ -82,6 +90,9 @@ export class CourcesDetailsComponent implements OnInit {
           this.selectedCourse = res.data;
           this.SelectedCourseName = this.selectedCourse.course.title
           console.log('course by ID => ', res)
+        } else if (res.message.includes('Invalid user')) {
+          this.alertService.warn('Signed Out!', 'You have been signed out because your account was accessed from another device.');
+          this.authService.forceLogout();
         }
       }
     })

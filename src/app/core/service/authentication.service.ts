@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { login, register, otpVarification } from '../model/auth.model';
 
 import { environment } from 'src/environment/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthenticationService {
 
   user: any | null = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public router: Router) { }
 
   private baseUrl = environment.apiUrl;
 
@@ -36,5 +37,11 @@ export class AuthenticationService {
 
   logout() {
     return this.http.get<any>(`${this.baseUrl}/user/logout`)
+  }
+
+  forceLogout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+    this.logout().subscribe()
   }
 }

@@ -53,6 +53,9 @@ export class LoginComponent implements OnInit {
       this.authService.login(formData).subscribe({
         next: (res: any) => {
           if (res.success) {
+            localStorage.setItem('studentID', res.data.user_id);
+            localStorage.setItem('token', res.data.api_key);
+            this.getStudentProfile();
             if (res.data.logout){
               Swal.fire({
                 title: 'Are you sure?',
@@ -70,9 +73,7 @@ export class LoginComponent implements OnInit {
                 }
               });
             } else{this.alertService.success('Success!', res.message);}
-            localStorage.setItem('studentID', res.data.user_id);
-            localStorage.setItem('token', res.data.api_key);
-            this.getStudentProfile();
+            
           } else {
             this.alertService.error('Error!', res.message);
           }
@@ -109,6 +110,10 @@ export class LoginComponent implements OnInit {
         if (res.success) {
           localStorage.setItem('student', JSON.stringify(res.data));
           this.navigateToCourse();
+           
+        } else if (res.message.includes('Invalid user')) {
+          this.authService.forceLogout()
+          this.alertService.warn('Signed Out!', 'You have been signed out because your account was accessed from another device.');
         }
       }
     })
