@@ -76,17 +76,36 @@
 										[VideoType]="VideoType"
 										[videoId]="videoId"
 									></app-video-embed> -->
-								
 									<div class="video-container" (contextmenu)="$event.preventDefault()">
-										<!-- YouTube & Vimeo Embed -->
+										<div class="responsive-video">
+										  <iframe *ngIf="videoType !== 'server'" 
+												  [src]="embedUrl | safeUrl"
+												  frameborder="0"
+												  allow="autoplay; encrypted-media"
+												  allowfullscreen>
+										  </iframe>
+									  
+										  <video *ngIf="videoType === 'server'"
+												 [src]="vimeoUrl"
+												 controls
+												 autoplay
+												 controlsList="nodownload"
+												 disablePictureInPicture
+												 (contextmenu)="$event.preventDefault()">
+										  </video>
+										</div>
+									  </div>
+									  
+									<!-- <div class="video-container" (contextmenu)="$event.preventDefault()">
 										<iframe *ngIf="videoType !== 'server'" 
 												[src]="embedUrl | safeUrl"
 												frameborder="0"
 												allow="autoplay; encrypted-media"
+												style="width: 100%; border-radius: 10px;"
+												width="100%"
 												allowfullscreen>
 										</iframe>
 									  
-										<!-- Server-hosted video -->
 										<video *ngIf="videoType === 'server'"
 											   [src]="vimeoUrl"
 											   controls
@@ -96,7 +115,7 @@
 											   (contextmenu)="$event.preventDefault()"
 											   style="width: 100%; border-radius: 10px;">
 										</video>
-									  </div>
+									  </div> -->
 									  
 								</div>
 							</div>
@@ -185,7 +204,7 @@
 													<div [id]="'collapse' + i" class="acod-body collapse" data-parent="#accordion001">
 													  <div class="acod-content" *ngFor="let session of module.sessions; let j = index"   [ngClass]="{'border border-primary': session.id === selectedSessionId && module.id === selectedModuleId}">
 														<div class="card w-100" style="height: fit-content !important; border: none !important; cursor: pointer;">
-														  <div class="card-body" style="height: fit-content !important;" (click)="playVideo(session.url, module.id, session.id)">
+														  <div class="card-body" style="height: fit-content !important;" (click)="playVideo(session.videos.vimeo_url, session.videos.name, module.id, session.id)">
 															<h6 class="post-meta truncate-text m-b0">{{ session.session_title }}</h6>
 															<p class="post-title text-truncate m-b0" style="font-size: 13px !important;">
 															  {{ session.hour }} Hours {{ session.minute }} Minutes {{ session.seconds }} Seconds

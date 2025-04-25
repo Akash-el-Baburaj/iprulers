@@ -150,9 +150,10 @@ export class CourcesDetailsComponent implements OnInit {
   
   //   this.videoPlayerOpen = true;
   // }
-  playVideo(url: string, moduleId: string, sessionId: string) {
+  playVideo(url: string, title: string, moduleId: string, sessionId: string) {
     this.selectedModuleId = moduleId;
     this.selectedSessionId = sessionId;
+    this.SelectedCourseName = title;
     this.videoPlayerOpen = true;
     this.vimeoUrl = '';
     this.VideoType = url.includes('vimeo.com') ? 'vimeo' : 'server';
