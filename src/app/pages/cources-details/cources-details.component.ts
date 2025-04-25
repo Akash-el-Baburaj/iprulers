@@ -37,7 +37,7 @@ export class CourcesDetailsComponent implements OnInit {
   selectedSessionId: string = '';
 
   duration: number | null = null;
-  isLoading: boolean = true;
+  isLoading: boolean = false;
   isVideoWatched: boolean = false;
   SelectedCourseName: any;
 
@@ -52,13 +52,16 @@ export class CourcesDetailsComponent implements OnInit {
   }
 
   getMyCourseList() {
+    this.isLoading = true;
     this.courseService.getCourseList(this.page).subscribe({
       next: (res: any) => {
         if (res.success) {
           this.myCourseList = res.data.courses;
           this.myMaterialList = res.data.materials;
+          this.isLoading = false;
         } else if (res.message.includes('Invalid user')) {
           this.alertService.warn('Signed Out!', 'You have been signed out because your account was accessed from another device.');
+          this.isLoading = false;
           this.authService.forceLogout();
         }
       }

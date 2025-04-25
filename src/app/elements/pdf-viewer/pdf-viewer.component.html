@@ -35,9 +35,14 @@
   (contextmenu)="disableRightClick($event)">
 </ngx-extended-pdf-viewer> -->
 <div class="pdf-viewer-container d-flex justify-content-center" (contextmenu)="disableRightClick($event)">
-  <div *ngFor="let page of pages" [ngClass]="{ 'center-page': scaleMode === 'original' }">
-    <canvas #pdfCanvas></canvas>
+  <div class="w-100 d-flex justify-content-center align-items-center" style="height: 85vh !important;" *ngIf="isLoading">
+    <div class="spinner"></div>
   </div>
+  <ng-container  *ngIf="!isLoading">
+    <div *ngFor="let page of pages" [ngClass]="{ 'center-page': scaleMode === 'original' }">
+      <canvas #pdfCanvas></canvas>
+    </div>  
+  </ng-container>
 </div>
 
 <!-- <div class="pdf-viewer-container" (contextmenu)="disableRightClick($event)">
