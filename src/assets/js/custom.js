@@ -1,7 +1,7 @@
 /**
 Core script to handle the entire theme and core functions
 **/
-var EduZone = function(){
+var iprulers = function(){
 	/* Search Bar ============ */
 	siteUrl = '';
 	
@@ -1325,8 +1325,8 @@ var EduZone = function(){
 /* Document.ready Start */	
 jQuery(document).ready(function() {
     'use strict';
-	EduZone.init();
-	// EduZone.handleMasonryFilter();
+	iprulers.init();
+	// iprulers.handleMasonryFilter();
 	
 	$('a[data-toggle="tab"]').click(function(){
 		// todo remove snippet on bootstrap v4
@@ -1345,7 +1345,7 @@ jQuery(document).ready(function() {
 /* Window Load START */
 jQuery(window).on('load',function () {
 	'use strict'; 
-	EduZone.load();
+	iprulers.load();
 	
 	setTimeout(function(){
 		jQuery('#loading-area').remove();
@@ -1355,7 +1355,7 @@ jQuery(window).on('load',function () {
 /* Window Resize START */
 jQuery(window).on('resize',function () {
 	'use strict'; 
-	EduZone.resize();
+	iprulers.resize();
 });
 /*  Window Resize END */
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-declare var EduZone: any;
+declare var iprulers: any;
 
 @Component({
   selector: 'app-about-us2',
@@ -59,7 +59,7 @@ export class AboutUs2Component {
   constructor() { }
 
   ngOnInit(): void {
-    EduZone.init();
+    iprulers.init();
   }
 
 }
