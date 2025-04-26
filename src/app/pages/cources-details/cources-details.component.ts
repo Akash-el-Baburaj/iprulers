@@ -87,12 +87,13 @@ export class CourcesDetailsComponent implements OnInit {
   }
 
   getCOurseById(id: string) {
+    this.isLoading = true;
     this.courseService.getCourseById(id).subscribe({
       next: (res: any) => {
         if (res.success) {
           this.selectedCourse = res.data;
           this.SelectedCourseName = this.selectedCourse.course.title
-          console.log('course by ID => ', res)
+          this.isLoading = false;
         } else if (res.message.includes('Invalid user')) {
           this.alertService.warn('Signed Out!', 'You have been signed out because your account was accessed from another device.');
           this.authService.forceLogout();
