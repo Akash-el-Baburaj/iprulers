@@ -2,12 +2,11 @@
     <h5 class="mb-3">Courses</h5>
     <div class="row">
         <div class="col-12 mb-2">
-            <!-- <div class="card mb-2" (click)="getCourseVideo(course)" 
-                 [ngClass]="{'playing': isSelected(course), 'highlighted': isSelected(course)}"> -->
             <div class="card mb-2"
+                    [ngClass]="{ 'selected': selectedCourseId === course.id }"
                     [ngbTooltip]="'Course 1'" *ngFor="let course of myCourses; let i = index"
                     > <!--loop data here-->
-                    <div class="card-body d-flex justify-content-between align-items-center py-0" style="cursor: pointer;" (click)="viewCourse(course.id)">
+                    <div class="card-body d-flex justify-content-between align-items-center py-0" style="cursor: pointer;" (click)="selectedCourseId !== course.id && viewCourse(course.id)">
                         <!-- Image (Left-Aligned) -->
                         <div class="course-image-container px-0" style="position: relative;">
                                 <img [src]="course.course_img" alt="">
@@ -19,111 +18,9 @@
                             <h6 class="post-title text-truncate m-b0" title="'learn Course 1'">
                                 {{course.description !== null ? course.description : 'course ' + i}}
                             </h6>
-                            <!-- <div class="dlab-post-meta">
-                                <ul class="w-100 courses">
-                                    <li class="px-0" > 
-                                        <ul class="item-review">
-                                            <li><i class="fa fa-star star"></i></li>
-                                            <li><i class="fa fa-star star"></i></li>
-                                            <li><i class="fa fa-star star"></i></li>
-                                            <li><i class="fa fa-star star"></i></li>
-                                            <li><i class="fa fa-star-half-o star"></i></li>
-                                            <li><i class="fa fa-star-o star"></i></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div> -->
                         </div>
                     </div>
             </div>
-            <!-- <div class="card mb-2" 
-                [ngbTooltip]="'Course 2'"
-                > 
-                <div class="card-body d-flex justify-content-between align-items-center py-0">
-                    <div class="course-image-container px-0" style="position: relative;">
-                            <img src="../../../../assets/images/courses/avaya.webp" alt="">
-                    </div>
-
-                    <div class="course-info">
-                        <div class="post-meta truncate-text" >Course 2 </div>
-                        <h6 class="post-title text-truncate m-b0" title="'learn Course 2'">
-                            learn Course 2 
-                        </h6>
-                        <div class="dlab-post-meta">
-                            <ul class="w-100 courses">
-                                <li class="px-0" > 
-                                    <ul class="item-review">
-                                        <li><i class="fa fa-star star"></i></li>
-                                        <li><i class="fa fa-star star"></i></li>
-                                        <li><i class="fa fa-star star"></i></li>
-                                        <li><i class="fa fa-star-half-o star"></i></li>
-                                        <li><i class="fa fa-star-o star"></i></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!-- <div class="card mb-2" 
-                [ngbTooltip]="'Course 3'"
-                > 
-                <div class="card-body d-flex justify-content-between align-items-center py-0">
-                    <div class="course-image-container px-0" style="position: relative;">
-                            <img src="../../../../assets/images/courses/Untitled-design-11.png" alt="">
-                    </div>
-
-                    <div class="course-info">
-                        <div class="post-meta truncate-text" >Course 3 </div>
-                        <h6 class="post-title text-truncate m-b0" title="'learn Course 3'">
-                            learn Course 3 
-                        </h6>
-                        <div class="dlab-post-meta">
-                            <ul class="w-100 courses">
-                                <li class="px-0" > 
-                                    <ul class="item-review">
-                                        <li><i class="fa fa-star star"></i></li>
-                                        <li><i class="fa fa-star star"></i></li>
-                                        <li><i class="fa fa-star star"></i></li>
-                                        <li><i class="fa fa-star-half-o star"></i></li>
-                                        <li><i class="fa fa-star-o star"></i></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!-- <div class="card mb-2" 
-                [ngbTooltip]="'Course 4'">
-                <div class="card-body d-flex justify-content-between align-items-center py-0">
-                    <div class="course-image-container px-0" style="position: relative;">
-                            <img src="../../../../assets/images/courses/Untitled-design-2.png" alt="">
-                    </div>
-
-                    <div class="course-info">
-                        <div class="post-meta truncate-text" >Course 4 </div>
-                        <h6 class="post-title text-truncate m-b0" title="'learn Course 4'">
-                            learn Course 4 
-                        </h6>
-                        <div class="dlab-post-meta">
-                            <ul class="w-100 courses">
-                                <li class="px-0" > 
-                                    <ul class="item-review">
-                                        <li><i class="fa fa-star star"></i></li>
-                                        <li><i class="fa fa-star star"></i></li>
-                                        <li><i class="fa fa-star star"></i></li>
-                                        <li><i class="fa fa-star-half-o star"></i></li>
-                                        <li><i class="fa fa-star-o star"></i></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-
         </div>
     </div>
 </div>

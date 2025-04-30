@@ -76,3 +76,15 @@
 .star:hover {
     color: #fff !important;
 } */
+
+.card.selected {
+    background-color: #1076bc !important; /* or any highlight color */
+    border-color: #0776c0;
+    color: #fff;
+  }
+  
+  .card.selected .post-meta,
+  .card.selected .post-title {
+    color: #fff !important;
+  }
+  

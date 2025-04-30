@@ -81,9 +81,10 @@ export class CourcesDetailsComponent implements OnInit {
   }
 
   viewCourse(event: any){ 
-    console.log('selected course => ',event.course_id);
     const ID = event.course_id;
     this.getCOurseById(ID);
+    this.videoPlayerOpen = false;
+    this.vimeoUrl = '';
   }
 
   getCOurseById(id: string) {
@@ -124,36 +125,7 @@ export class CourcesDetailsComponent implements OnInit {
     const target = event.target as HTMLImageElement;
     target.src = '../../../../assets/images/default-profile.png';
   }
-  // playVideo(url: string, module: string, session: string) {
-  //   this.selectedModuleId = module;
-  //   this.selectedSessionId = session;
-  //   this.vimeoUrl = '';
-  //   this.videoPlayerOpen = true;
-  //   if (url) {
-  //     this.vimeoUrl = url;
-  //     this.getCourseVideo(this.vimeoUrl, true);
-  //   }
-  // }
-
-  // playVideo(url: string, moduleId: string, sessionId: string) {
-  //   // Update selection
-  //   this.selectedModuleId = moduleId;
-  //   this.selectedSessionId = sessionId;
   
-  //   // Reset vimeoUrl temporarily to trigger change detection
-  //   if (this.vimeoUrl === '') {
-  //     this.vimeoUrl = '';
-  //     setTimeout(() => {
-  //       this.vimeoUrl = url;
-  //       this.getCourseVideo(url, true);
-  //     }, 50);
-  //   } else {
-  //     this.vimeoUrl = url;
-  //     this.getCourseVideo(url, true);
-  //   }
-  
-  //   this.videoPlayerOpen = true;
-  // }
   playVideo(url: string, title: string, moduleId: string, sessionId: string) {
     this.selectedModuleId = moduleId;
     this.selectedSessionId = sessionId;

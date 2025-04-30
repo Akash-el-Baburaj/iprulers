@@ -9,6 +9,8 @@ export class RecentPosts1Component implements OnChanges {
 
   @Input() courseList: any[] = [];
   @Output() courseSelected = new EventEmitter<any>(); 
+
+  selectedCourseId: string | null = null;
   
   myCourses: any[] = [];
 
@@ -20,9 +22,15 @@ export class RecentPosts1Component implements OnChanges {
     }
   }
 
+  // viewCourse(id: string) {
+  //   this.courseSelected.emit({course_id: id})
+  // }
+
   viewCourse(id: string) {
-    this.courseSelected.emit({course_id: id})
+    this.selectedCourseId = id;
+    this.courseSelected.emit({ course_id: id });
   }
+  
 
 
 
