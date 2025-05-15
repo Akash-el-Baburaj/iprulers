@@ -73,6 +73,7 @@ import { SingleSidebarLeftComponent } from './blog/single-sidebar-left/single-si
 import { HomeLanguageSchoolComponent } from './home-language-school/home-language-school.component';
 import { CommonModule } from '@angular/common';
 import { PdfViewerComponent } from './elements/pdf-viewer/pdf-viewer.component';
+import { authGuard } from './core/helpers/auth.guard';
 
 const routes: Routes = [
 	{ path: '', component: HomeLanguageSchoolComponent },
@@ -116,7 +117,7 @@ const routes: Routes = [
 	{path: 'teacher', component: TeachersComponent},
 	{path: 'teachers-profile', component: TeachersProfileComponent},
 	{path: 'app-courses', component: CourcesComponent},
-	{path: 'courses-details', component: CourcesDetailsComponent},
+	{path: 'courses-details', component: CourcesDetailsComponent, canActivate: [authGuard]},
 	{path: 'course-pdf', component: PdfViewerComponent},
 	{path: 'event', component: EventsComponent},
 	{path: 'event-details', component: EventsDetailsComponent},
