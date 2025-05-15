@@ -85,12 +85,26 @@
 									></app-video-embed> -->
 									<div class="video-container" (contextmenu)="$event.preventDefault()">
 										<div class="responsive-video">
-										  <iframe *ngIf="videoType !== 'server'" 
+											<!-- <iframe src="https://player.vimeo.com/video/1084164069?h=UNIQUE_HASH"
+													width="640" height="360" frameborder="0"
+													allow="autoplay; fullscreen; picture-in-picture"
+													allowfullscreen></iframe> -->
+										  <ng-container *ngIf="videoType !== 'server'">
+											<iframe *ngIf="videoType === 'vimeo'" 
 												  [src]="embedUrl | safeUrl"
 												  frameborder="0"
 												  allow="autoplay; encrypted-media"
+												  referrerpolicy="strict-origin"
 												  allowfullscreen>
 										  </iframe>
+										  <iframe *ngIf="videoType !== 'vimeo'" 
+												[src]="embedUrl | safeUrl"
+												frameborder="0"
+												allow="autoplay; encrypted-media"
+												allowfullscreen>
+										</iframe>
+
+										  </ng-container>
 									  
 										  <video *ngIf="videoType === 'server'"
 												 [src]="vimeoUrl"
