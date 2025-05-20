@@ -18,7 +18,6 @@ export class Courses6Component implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['courseList']) {
       this.myCourse = this.course;
-      console.log('hereooo <<>>', this.myCourse)
     }
   }
 

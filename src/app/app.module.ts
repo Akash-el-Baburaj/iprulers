@@ -204,6 +204,7 @@ import { JwtInterceptor } from './core/helpers/jwt.interceptor';
 import { VideoEmbedComponent } from './elements/video-embed/video-embed.component';
 
 import { SafeUrlPipe } from './core/pipes/safe-url.pipe';
+import { SortPipe } from './core/pipes/sort.pipe';
 // import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 
@@ -402,6 +403,7 @@ import { SafeUrlPipe } from './core/pipes/safe-url.pipe';
     PdfViewerComponent,
     VideoEmbedComponent,
     SafeUrlPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,
@@ -417,7 +419,7 @@ import { SafeUrlPipe } from './core/pipes/safe-url.pipe';
     AppRoutingModule,
     NgxExtendedPdfViewerModule,
   ],
-  exports:[VideoEmbedComponent, SafeUrlPipe],
+  exports:[VideoEmbedComponent, SafeUrlPipe, SortPipe],
   providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

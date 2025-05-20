@@ -93,6 +93,9 @@ export class CourcesDetailsComponent implements OnInit {
       next: (res: any) => {
         if (res.success) {
           this.selectedCourse = res.data;
+          this.selectedCourse.modules.forEach((module: any) => {
+            module.sessions.sort((a: any, b: any) => a.sort_order - b.sort_order);
+            });
           this.SelectedCourseName = this.selectedCourse.course.title
           this.isLoading = false;
         } else if (res.message.includes('Invalid user')) {
@@ -173,43 +176,7 @@ export class CourcesDetailsComponent implements OnInit {
       const uniqueHash = segments.pop(); 
       const id = segments.pop(); 
       return `https://player.vimeo.com/video/${id}?h=${uniqueHash}&autoplay=1&title=0&byline=0&portrait=0`;
-    }
-    
-    // if (this.videoType === 'vimeo') {
-    //   const segments = this.vimeoUrl.split('/');
-    //   console.log('this.vimeoUrl<<<vimeo>>> ', this.vimeoUrl)
-    //   console.log('segments<<<vimeo>>> ', segments)
-    //   const id = segments.pop() || segments.pop(); // Handle trailing slash
-    //   console.log('id<<<vimeo>>> ', id)
-    //   // return `https://player.vimeo.com/video/${id}?autoplay=1&title=0&byline=0&portrait=0`;
-    //   const hash = 'password'
-    //   return `https://player.vimeo.com/video/${id}?autoplay=1&title=0&byline=0&portrait=0`;
-
-    // }
-  
+    } 
     return '';
   }
-  
-  
-
-  // get videoType(): 'youtube' | 'vimeo' | 'server' {
-  //   if (this.vimeoUrl.includes('youtube.com') || this.vimeoUrl.includes('youtu.be')) return 'youtube';
-  //   if (this.vimeoUrl.includes('vimeo.com')) return 'vimeo';
-  //   return 'server';
-  // }
-
-  // get embedUrl(): string {
-  //   if (this.videoType === 'youtube') {
-  //     const videoId = this.vimeoUrl.split('v=')[1]?.split('&')[0] || this.vimeoUrl.split('/').pop();
-  //     return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1&controls=1`;
-  //   }
-  //   if (this.videoType === 'vimeo') {
-  //     const videoId = this.vimeoUrl.split('/').pop();
-  //     return `https://player.vimeo.com/video/${videoId}?autoplay=1`;
-  //   }
-  //   return '';
-  // }
-  
-
- 
-  }
+}

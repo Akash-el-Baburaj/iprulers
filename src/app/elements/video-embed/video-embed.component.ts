@@ -32,9 +32,7 @@ export class VideoEmbedComponent implements OnChanges, OnInit {
     if (changes['VideoURL']) {
       this.videoEmbedUrl = this.VideoURL;
       this.videoEmbedType = this.VideoType
-      this.video_id = this.videoId
-      console.log('this.videoEmbedUrl <<<>>>>>> ',this.videoEmbedUrl)
-     
+      this.video_id = this.videoId     
     }
   }
 
@@ -60,26 +58,18 @@ export class VideoEmbedComponent implements OnChanges, OnInit {
     }
 
   onMetadataLoaded(video: HTMLVideoElement): void {
-    this.duration = video.duration; // Get video duration in seconds
-    console.log('Video duration (seconds):', this.duration);
-  
-    const hours = Math.floor(this.duration / 3600); // Calculate hours
-    const minutes = Math.floor((this.duration % 3600) / 60); // Calculate remaining minutes
-    const seconds = Math.floor(this.duration % 60); // Calculate remaining seconds
-  
-    console.log(
-      `Video duration: ${hours} hour(s), ${minutes} minute(s), and ${seconds} second(s)`
-    );
+    this.duration = video.duration;  
+    const hours = Math.floor(this.duration / 3600); 
+    const minutes = Math.floor((this.duration % 3600) / 60); 
+    const seconds = Math.floor(this.duration % 60); 
   }
   
   onVideoEnded(video: HTMLVideoElement): void {
     video.autoplay = false; // Stop autoplay after the first play
-    console.log('Video ended. Autoplay disabled.');
 
   }
 
   onVideoCanPlay(): void {
-    console.log('Video is ready to play');
     this.isLoading = false; // Hide the loader when the video is ready
   }
 
@@ -88,9 +78,7 @@ export class VideoEmbedComponent implements OnChanges, OnInit {
     const watchedPercentage = video.currentTime / video.duration;
 
     if (watchedPercentage >= threshold && !this.isVideoWatched) {
-      this.isVideoWatched = true;
-      console.log('Video is completely watched');
-   
+      this.isVideoWatched = true;  
     }
   }
 }
