@@ -1,0 +1,30 @@
+.testimonial-container {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+  }
+  
+  .testimonial-container h2 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+
+  ::ng-deep .testimonial-container p {
+    color: #2c3e50;
+    margin-bottom: 5px !important;
+  }
+  
+  
+  .testimonial-container strong {
+    color: #2980b9;
+  }
+  
+  .testimonial-container em {
+    color: #7f8c8d;
+  }
+  

@@ -7,7 +7,11 @@ declare  var jQuery:  any;
   styleUrls: ['./testimonial3.component.css']
 })
 export class Testimonial3Component {
+
+
+
   ngOnInit(): void {
+
 		(function ($) {
 			jQuery('.testimonial-six').owlCarousel({
 				loop:true,
@@ -41,4 +45,11 @@ export class Testimonial3Component {
 			});
 		})(jQuery);
 	}
+
+
+
+	onImageError(event: Event) {
+		const target = event.target as HTMLImageElement;
+		target.src = '../../../../assets/images/default-profile.png';
+	  }
 }
