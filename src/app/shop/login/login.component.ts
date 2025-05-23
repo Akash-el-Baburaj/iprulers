@@ -114,6 +114,8 @@ export class LoginComponent implements OnInit {
         } else if (res.message.includes('Invalid user')) {
           this.authService.forceLogout()
           this.alertService.warn('Signed Out!', 'You have been signed out because your account was accessed from another device.');
+        } else if (res.message.includes('inactive')) {
+          this.alertService.warn('Inactive!', res.message);
         }
       }
     })
