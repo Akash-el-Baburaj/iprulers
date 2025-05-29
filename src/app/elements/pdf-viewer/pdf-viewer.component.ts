@@ -22,7 +22,7 @@ export class PdfViewerComponent implements AfterViewInit, OnInit {
   pages: number[] = [];
   pdfDoc: any;
   isLoading: boolean = false;
-  scaleMode: 'fit' | 'original' = 'fit';
+  scaleMode: 'fit' | 'original' = 'original';
 
   // @ViewChild('pdfCanvas', { static: false }) pdfCanvas!: ElementRef<HTMLCanvasElement>;
   @ViewChildren('pdfCanvas') pdfCanvas!: QueryList<ElementRef<HTMLCanvasElement>>;
@@ -106,7 +106,7 @@ async renderAllPages() {
 }
 
 toggleScaleMode() {
-  this.scaleMode = this.scaleMode === 'fit' ? 'original' : 'fit';
+  this.scaleMode = this.scaleMode === 'original' ? 'original' : 'original';
   this.renderAllPages();
 }
 
