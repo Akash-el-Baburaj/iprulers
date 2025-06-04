@@ -4,6 +4,7 @@ import { AuthenticationService } from 'src/app/core/service/authentication.servi
 import { Router } from '@angular/router';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { AlertService } from 'src/app/core/service/services/alert.service';
+import { UrlShareService } from 'src/app/core/service/url-share.service';
 
 @Component({
   selector: 'app-cources-details',
@@ -43,7 +44,7 @@ export class CourcesDetailsComponent implements OnInit {
 
   user: any;
 
-  constructor(private courseService: CourseService,private router: Router, private alertService: AlertService, private sanitizer: DomSanitizer, private authService: AuthenticationService) {
+  constructor(private courseService: CourseService,private router: Router, private alertService: AlertService, private sanitizer: DomSanitizer, private authService: AuthenticationService, private pdfService: UrlShareService) {
       }
 
   ngOnInit(): void {
@@ -106,8 +107,10 @@ export class CourcesDetailsComponent implements OnInit {
     })
   }
   navigateToPdf(pdfUrl: string) {
-    const encodedData = encodeURIComponent(pdfUrl)
-    this.router.navigate(['/course-pdf'], { queryParams: { data: encodedData } })
+    // const encodedData = encodeURIComponent(pdfUrl)
+    // this.router.navigate(['/course-pdf'], { queryParams: { data: encodedData } })
+    this.pdfService.setPdfUrl(pdfUrl);
+    this.router.navigate(['/course-pdf']);
   }
 
   // navigateToPdf(pdfUrl: string) {

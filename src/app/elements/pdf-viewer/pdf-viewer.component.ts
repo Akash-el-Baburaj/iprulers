@@ -8,6 +8,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ContentProtectionService } from 'src/app/core/service/content-protection.service';
 import * as pdfjsLib from 'pdfjs-dist';
+import { UrlShareService } from 'src/app/core/service/url-share.service';
+import { AlertService } from 'src/app/core/service/services/alert.service';
+import { AuthenticationService } from 'src/app/core/service/authentication.service';
 
 @Component({
   selector: 'app-pdf-viewer',
@@ -15,7 +18,7 @@ import * as pdfjsLib from 'pdfjs-dist';
   styleUrls: ['./pdf-viewer.component.css']
 })
 export class PdfViewerComponent implements AfterViewInit, OnInit {
-  @Input() pdfUrl: string = 'assets/pdf/javascript_tutorial.pdf';
+  @Input() pdfUrl: string | null = null;
   @ViewChild('pdfFrame', { static: false }) pdfFrame!: ElementRef<HTMLIFrameElement>;
   sanitizedPdfUrl: SafeResourceUrl = '';
   noteData: any;
@@ -23,7 +26,7 @@ export class PdfViewerComponent implements AfterViewInit, OnInit {
   pdfDoc: any;
   isLoading: boolean = false;
   scaleMode: 'fit' | 'original' = 'original';
-
+  user: any;
   // @ViewChild('pdfCanvas', { static: false }) pdfCanvas!: ElementRef<HTMLCanvasElement>;
   @ViewChildren('pdfCanvas') pdfCanvas!: QueryList<ElementRef<HTMLCanvasElement>>;
 
@@ -31,29 +34,48 @@ export class PdfViewerComponent implements AfterViewInit, OnInit {
     private sanitizer: DomSanitizer,
     private route: ActivatedRoute,
     private location: Location,
-    private contentProtectionService: ContentProtectionService
+    private contentProtectionService: ContentProtectionService,
+    private pdfService: UrlShareService,
+    private alertService: AlertService, 
+    private authService: AuthenticationService
   ) {
-    this.route.queryParams.subscribe(params => {
-      if (params['data']) {
-        try {
-          this.noteData = decodeURIComponent(params['data']);
-          this.pdfUrl = this.noteData;
-        } catch (e) {
-          console.error('Invalid note data', e);
-        }
-      }
-      this.setSanitizedUrl();
-    });
+    // this.route.queryParams.subscribe(params => {
+    //   if (params['data']) {
+    //     try {
+    //       this.noteData = decodeURIComponent(params['data']);
+    //       this.pdfUrl = this.noteData;
+    //     } catch (e) {
+    //       console.error('Invalid note data', e);
+    //     }
+    //   }
+    //   this.setSanitizedUrl();
+    // });
   }
   ngAfterViewInit(): void {
     this.isLoading = true;
-    this.loadPdf(this.pdfUrl);
+    if (this.pdfUrl) {
+      this.loadPdf(this.pdfUrl);
+    }
     }
 
   ngOnInit() {
     document.addEventListener('contextmenu', this.disableRightClick);
     this.contentProtectionService.initAllProtections();
+    this.pdfUrl = this.pdfService.getPdfUrl();
     this.setSanitizedUrl();
+    this.getProfile()
+  }
+
+  getProfile() {
+    this.authService.getUserProfile().subscribe({
+      next: (res: any) => {
+        this.user = res.data;
+        if (res.message.includes('Invalid user')) {
+          this.alertService.warn('Signed Out!', 'You have been signed out because your account was accessed from another device.');
+          this.authService.forceLogout();
+        }
+      }
+    })
   }
 
 
