@@ -1,7 +1,8 @@
 import {
   Component, Input, AfterViewInit, ViewChild, ElementRef, HostListener, OnInit,
   ViewChildren,
-  QueryList
+  QueryList,
+  OnDestroy
 } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
@@ -17,7 +18,7 @@ import { AuthenticationService } from 'src/app/core/service/authentication.servi
   templateUrl: './pdf-viewer.component.html',
   styleUrls: ['./pdf-viewer.component.css']
 })
-export class PdfViewerComponent implements AfterViewInit, OnInit {
+export class PdfViewerComponent implements AfterViewInit, OnInit, OnDestroy {
   @Input() pdfUrl: string | null = null;
   @ViewChild('pdfFrame', { static: false }) pdfFrame!: ElementRef<HTMLIFrameElement>;
   sanitizedPdfUrl: SafeResourceUrl = '';
@@ -51,6 +52,11 @@ export class PdfViewerComponent implements AfterViewInit, OnInit {
     //   this.setSanitizedUrl();
     // });
   }
+  
+  ngOnDestroy(): void {
+    this.pdfService.clearPdfUrl();
+  }
+
   ngAfterViewInit(): void {
     this.isLoading = true;
     if (this.pdfUrl) {
@@ -182,6 +188,7 @@ onKeyDown(event: KeyboardEvent): void {
 
   goBack(): void {
     this.location.back();
+    this.pdfService.clearPdfUrl();
   }
 
   disableContextMenu(event: MouseEvent) {

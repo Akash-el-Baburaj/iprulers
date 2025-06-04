@@ -50,6 +50,7 @@ export class CourcesDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.getProfile();
     this.getMyCourseList();
+    this.pdfService.clearPdfUrl();
   }
 
   getMyCourseList() {
